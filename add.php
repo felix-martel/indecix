@@ -1,5 +1,19 @@
 
 <?php
+	$host_name  = "db646744700.db.1and1.com";
+	$database   = "db646744700";
+	$user_name  = "dbo646744700";
+	$password   = "Khotes!X2015";
+
+	$connect = mysqli_connect($host_name, $user_name, $password, $database);
+ if(mysqli_connect_errno())
+    {
+    echo '<p>Échec de la connexion à la base de données : '.mysqli_connect_error().'</p>';
+    }
+    else
+    {
+    echo '<p>Connexion réussie à la base de données.</p>';
+    }
 
 function add_khote($user_id, $khoteur, $khote) 
 {
