@@ -11,6 +11,7 @@ alors il faut se placer dans td1/www/
 - Télécharger les fichiers depuis GitHub : git pull web master (il te demandera de t'identifier)
 
 Ensuite, lire ce guide : http://rogerdudler.github.io/git-guide/
+
 En deux mots : tu as trois "zones" :
 - ton working directory WD, qui contient tes fichiers et dans lequel tu travailles
 - la HEAD : c'est un dossier qui comporte les fichiers dans l'état valide
