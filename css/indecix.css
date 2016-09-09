@@ -1,0 +1,68 @@
+body {
+  font-size: 1.7em;
+}
+
+#khote-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.khote {
+  width: 95%;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  margin: 10px auto;
+}
+
+.khote:hover {
+  border-color: gray;
+}
+
+#add-khote {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 55px;
+  height: 55px;
+  line-height: 40px;
+  border-radius: 100%;
+  background-color: orangered;
+  border: 1px solid tomato;
+  box-shadow: 0 0 4px gray;
+  color: white;
+  font-weight: 700;
+  font-size: 2.3em;
+}
+
+.khote-text {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.khote-button {
+  background-color: transparent;
+  border: none;
+  font-size: 0.8em;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.khote-button:hover {
+  background-color: lightgray;
+  outline: none;
+}
+
+.up-number {
+  border-radius: 0 0 0 2px;
+  color: limegreen;
+}
+
+.down-number {
+  color: orangered;
+}
+.fav-number {
+  border-radius: 0 0 2px 0;
+  
+}
+
+

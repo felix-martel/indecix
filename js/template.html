@@ -1,0 +1,23 @@
+<div id="main-tpl">
+    <div>
+        <ul id="khote-list">
+            {{#khotes}}
+                <li class="khote row" id="khote-{{khote_id}}">
+                    <p class="khote-text">
+                        {{khoteur}}<span> khote </span>{{khote}}
+                    </p>
+                    <button class="khote-button col-xs-4 up-number">
+                        {{up-number}}<i class="glyphicon glyphicon-arrow-up"></i>
+                    </button>
+                    <button class="khote-button col-xs-4 down-number">
+                        {{down-number}}<i class="glyphicon glyphicon-arrow-down"></i>
+                    </button>
+                    <button class="khote-button col-xs-4 fav-number">
+                        {{fav-number}}<i class="glyphicon glyphicon-heart"></i>
+                    </button>
+                </li>
+            {{/khotes}}
+        </ul>
+    </div>
+</div>
+
