@@ -1,0 +1,11 @@
+TODO :
+Au niveau PHP :
+- Ajout de khote
+- Update des khotes (up, down, fav)
+
+À plus long terme :
+- Gestion des comptes utilisateurs
+
+
+Au niveau Design :
+- Trouver un plug-in Material Design pour Bootstrap
