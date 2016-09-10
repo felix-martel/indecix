@@ -2,9 +2,12 @@ TODO :
 Au niveau PHP :
 - Ajout de khote
 - Update des khotes (up, down, fav)
+- Récupération des khotes pour affichage
 
 À plus long terme :
 - Gestion des comptes utilisateurs
+- Se brancher sur le site existant http://khotes/
+- Rapatrier les anciennes khotes sur notre bdd
 
 
 Au niveau Design :
