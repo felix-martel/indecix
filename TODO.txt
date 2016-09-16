@@ -1,14 +1,13 @@
 TODO :
-Au niveau PHP :
-- Ajout de khote
-- Update des khotes (up, down, fav)
-- Récupération des khotes pour affichage
 
-À plus long terme :
-- Gestion des comptes utilisateurs
+>>> Ce qu'on peut faire seuls :
+- Gérer l'ajout de khôtes (:fichier add.php)
+- Gérer l'affichage de khôtes (:fichier get.php) (que ce soit All, Top, ou Fav)
+- Gérer le système de vote et de fav (:fichier react.php)
+- Gérer la modération des khôtes (:fichier delete.php)
+- Gérer les utilisateurs (:fichiers sign_in.php, sign_up.php)
+- Gérer les paramètres utilisateurs (ajout de champs dans la table users, en particulier le choix des couleurs)
+
+>>> Ce qui nécessite de contacter le BR/la Kès :
 - Se brancher sur le site existant http://khotes/
 - Rapatrier les anciennes khotes sur notre bdd
-
-
-Au niveau Design :
-- Trouver un plug-in Material Design pour Bootstrap
