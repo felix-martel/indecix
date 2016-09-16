@@ -1,5 +1,55 @@
 body {
   font-size: 1.7em;
+  background-color: #673AB7;
+  padding: 1em;
+  padding-top: 
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+
+.main-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  list-style-type: none;
+  padding: 0;
+  padding-left: 1em;
+  margin: 0;
+  height: 50px;
+  width: 100%;
+  background-color: #673AB7;
+  z-index: 1;
+}
+
+.main-menu li {
+  display: inline-block;
+  list-style: none;
+}
+
+
+.main-menu .active a {
+  opacity: 1;
+  transition: opacity 0.25s;
+}
+
+.main-menu a {
+  color: white;
+  opacity: 0.5;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 2em;
+  font-weight: bold;
+  padding-right: 0.2em;
+  line-height: 50px;
+  text-decoration: none;
+  transition: opacity 0.25s;
+}
+
+#container {
+  margin-top: 50px;
 }
 
 #khote-list {
@@ -8,10 +58,10 @@ body {
 }
 
 .khote {
-  width: 95%;
-  border: 1px solid lightgray;
-  border-radius: 2px;
-  margin: 10px auto;
+  width: 100%;
+  font-size: 1.3em;
+  margin: 1em auto;
+  /*border-bottom: 2px solid rgba(255, 255, 255, 0.5);*/
 }
 
 .khote:hover {
@@ -26,8 +76,8 @@ body {
   height: 55px;
   line-height: 40px;
   border-radius: 100%;
-  background-color: orangered;
-  border: 1px solid tomato;
+  background-color: #64FFDA;
+  border: 1px solid #00695C;
   box-shadow: 0 0 4px gray;
   color: white;
   font-weight: 700;
@@ -35,23 +85,24 @@ body {
 }
 
 .khote-text {
-  padding: 8px;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .khote-button {
   background-color: transparent;
   border: none;
-  font-size: 0.8em;
-  padding-top: 7px;
-  padding-bottom: 7px;
+  opacity: 0.5;
+  font-size: 0.85em;
 }
 
 .khote-button:hover {
-  background-color: lightgray;
+  opacity: 1;
   outline: none;
 }
 
+.up-number, .down-number, .fav-number {
+}
+/*
 .up-number {
   border-radius: 0 0 0 2px;
   color: limegreen;
@@ -63,6 +114,6 @@ body {
 .fav-number {
   border-radius: 0 0 2px 0;
   
-}
+}*/
 
 
