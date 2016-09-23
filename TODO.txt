@@ -10,4 +10,5 @@ TODO :
 
 >>> Ce qui nécessite de contacter le BR/la Kès :
 - Se brancher sur le site existant http://khotes/
+- Se connecter via Frankiz (voir : http://wikibr.binets.fr/Authentification_Frankiz)
 - Rapatrier les anciennes khotes sur notre bdd
