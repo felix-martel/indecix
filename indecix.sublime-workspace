@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"word",
+				"word-break"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"padd",
+				"padding-right"
+			],
+			[
 				"box",
 				"box-shadow"
 			],
@@ -98,14 +114,6 @@
 			[
 				"ini",
 				"inline-block"
-			],
-			[
-				"margin",
-				"margin-bottom"
-			],
-			[
-				"font",
-				"font-size"
 			],
 			[
 				"togg",
@@ -215,7 +223,7 @@
 			"file": "add.php",
 			"settings":
 			{
-				"buffer_size": 1035,
+				"buffer_size": 1457,
 				"line_ending": "Windows"
 			}
 		},
@@ -223,7 +231,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 964,
+				"buffer_size": 902,
 				"line_ending": "Windows"
 			}
 		},
@@ -231,7 +239,7 @@
 			"file": "js/template.html",
 			"settings":
 			{
-				"buffer_size": 906,
+				"buffer_size": 2226,
 				"line_ending": "Windows"
 			}
 		},
@@ -239,7 +247,7 @@
 			"file": "css/indecix.css",
 			"settings":
 			{
-				"buffer_size": 920,
+				"buffer_size": 3165,
 				"line_ending": "Unix"
 			}
 		},
@@ -247,7 +255,7 @@
 			"file": "js/index.js",
 			"settings":
 			{
-				"buffer_size": 2068,
+				"buffer_size": 3435,
 				"line_ending": "Windows"
 			}
 		},
@@ -325,11 +333,12 @@
 	},
 	"file_history":
 	[
+		"/C/Users/felix/Documents/Dev/Modal/td1/www/js/template.html",
+		"/C/Users/felix/Documents/Dev/Ricochey/script/friends.js",
 		"/C/Users/felix/Documents/Dev/Verbotron/mainpage.php",
 		"/C/Users/felix/Documents/Dev/Modal/td1/www/js/index.js",
 		"/C/Users/felix/Documents/Dev/Modal/td1/www/index.html",
 		"/C/Users/felix/Documents/Dev/Verbotron/cancel.php",
-		"/C/Users/felix/Documents/Dev/Modal/td1/www/js/template.html",
 		"/C/Users/felix/Documents/Dev/Modal/td1/www/css/td1.css",
 		"/C/Users/felix/Documents/Dev/Modal/td1/www/fiche_mon_profil.html",
 		"/C/Users/felix/Documents/Dev/Modal/td1/www/css/index.css",
@@ -350,7 +359,6 @@
 		"/C/Users/felix/Documents/Dev/Ricochey/style/_menu.scss",
 		"/C/Users/felix/Documents/Dev/Ricochey/friends.php",
 		"/C/Users/felix/Documents/Dev/Ricochey/style/_friends.scss",
-		"/C/Users/felix/Documents/Dev/Ricochey/script/friends.js",
 		"/C/Users/felix/Documents/Dev/Ricochey/style/_inbox.scss",
 		"/C/Users/felix/Documents/Dev/Ricochey/style/_reset.scss",
 		"/C/Users/felix/Documents/Dev/Ricochey/style/track.css",
@@ -461,15 +469,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1035,
+						"buffer_size": 1457,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1035,
-								1035
+								0,
+								0
 							]
 						],
 						"settings":
@@ -478,7 +486,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 238.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
@@ -490,15 +498,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 964,
+						"buffer_size": 902,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								878,
-								878
+								555,
+								555
 							]
 						],
 						"settings":
@@ -520,15 +528,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 906,
+						"buffer_size": 2226,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								746,
-								746
+								124,
+								124
 							]
 						],
 						"settings":
@@ -550,15 +558,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 920,
+						"buffer_size": 3165,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								319,
-								319
+								2521,
+								2521
 							]
 						],
 						"settings":
@@ -568,7 +576,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2415.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -580,15 +588,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2068,
+						"buffer_size": 3435,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1442,
-								1442
+								2182,
+								2182
 							]
 						],
 						"settings":
@@ -597,8 +605,8 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 135.0,
+						"translation.x": -0.0,
+						"translation.y": 111.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

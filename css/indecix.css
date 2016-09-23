@@ -2,7 +2,6 @@ body {
   font-size: 1.7em;
   background-color: #673AB7;
   padding: 1em;
-  padding-top: 
 }
 
 * {
@@ -30,7 +29,7 @@ body {
 }
 
 
-.main-menu .active a {
+.main-menu a.active {
   opacity: 1;
   transition: opacity 0.25s;
 }
@@ -48,13 +47,98 @@ body {
   transition: opacity 0.25s;
 }
 
-#container {
-  margin-top: 50px;
+h1 {
+  text-transform: uppercase;
+  font-size: 2em
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+
+}
+#post-new-khote, .khote-separator {
+  font-size: 1.3em;
+}
+
+.khote-separator {
+  margin: 14px 0 8px 0;
+}
+#close-writing-page {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  font-size: 1.3em;
+}
+#close-writing-page:hover {
+  opacity: 0.5;
+}
+#auto-fav {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 1.3em;
+  margin-left: 25px;
+}
+#post-new-khote {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 0.2em;
+  outline: none;
+  padding: 0.2em 0.5em;
+}
+#form-buttons {
+  margin-top: 28px;
+  white-space: nowrap;
+}
+
+input[type="submit"]:hover {
+  background-color: white;
+  color: #673AB7;
+}
+
+input[type="text"], input[type="password"], textarea {
+  font-size: 1.6em;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  outline: none;
+  margin-bottom: 10px;
+}
+textarea {
+  resize: none;
+  border-color: transparent;
+  height: 4.8em;
+  z-index: 1;
+  line-height: 1.6em;
+}
+
+.textarea-wrap {
+  position: relative;
+}
+.hidden-bar {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  color: transparent;
+  width: 100%;
+  font-size: 1.6em;
+  line-height: 1.6em;
+  margin: 0;
+}
+.hidden-p-wrap {
+  z-index: -1000;
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+#test-input {
+  word-break: break-word;
+  width: 400%;
 }
 
 #khote-list {
   list-style-type: none;
   padding: 0;
+  margin-top: 50px;
 }
 
 .khote {
@@ -69,12 +153,15 @@ body {
 }
 
 #add-khote {
+  text-decoration: none;
+  display: block;
   position: fixed;
   bottom: 30px;
   right: 30px;
   width: 55px;
   height: 55px;
-  line-height: 40px;
+  text-align: center;
+  line-height: 55px;
   border-radius: 100%;
   background-color: #64FFDA;
   border: 1px solid #00695C;
@@ -82,6 +169,11 @@ body {
   color: white;
   font-weight: 700;
   font-size: 2.3em;
+}
+
+#add-khote:visited {
+  color: white;
+  text-decoration: none;
 }
 
 .khote-text {

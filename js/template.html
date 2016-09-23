@@ -1,23 +1,67 @@
 <div id="main-tpl">
+    <ul class="main-menu">
+        <li id="menu-item-all" class="menu-item"><a class="menu-item-a active" href="#all">All</a></li>
+        <li id="menu-item-top" class="menu-item"><a class="menu-item-a" href="#top">Top</a></li>
+        <li id="menu-item-fav" class="menu-item"><a class="menu-item-a" href="#fav">Fav</a></li>
+    </ul>
     <div>
         <ul id="khote-list">
-            {{#khotes}}
+            {{#.}}
                 <li class="khote row" id="khote-{{khote_id}}">
                     <p class="khote-text">
                         {{khoteur}}<span> khote </span>{{khote}}
                     </p>
                     <button class="khote-button up-number">
-                        {{up-number}}<i class="glyphicon glyphicon-arrow-up"></i>
+                        {{up}}<i class="glyphicon glyphicon-arrow-up"></i>
                     </button>
                     <button class="khote-button  down-number">
-                        {{down-number}}<i class="glyphicon glyphicon-arrow-down"></i>
+                        {{down}}<i class="glyphicon glyphicon-arrow-down"></i>
                     </button>
                     <button class="khote-button  fav-number">
-                        {{fav-number}}<i class="glyphicon glyphicon-heart"></i>
+                        {{fav}}<i class="glyphicon glyphicon-heart"></i>
                     </button>
                 </li>
-            {{/khotes}}
+            {{/.}}
         </ul>
     </div>
+    <!--<button type="button" id="add-khote" onclick="window.open('#new', '_self');">+</button>-->
+    <a href="#new" id="add-khote">+</a>
 </div>
 
+<div id="writing-page-tpl">
+<div>
+    <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.history.back();"></i>
+    <form method="post" action="add.php">
+        <h1>Add new</h1>
+        <input type="text" id="khoteur-input" name="khoteur" placeholder="S*meb*dy"/>
+        <p class="khote-separator">khote</p>
+        <div class="textarea-wrap">
+            <textarea id="khote" name="khote" placeholder="qqch&#10;de&#10;rigolo"></textarea>
+            <div class="hidden-p-wrap">
+                <p class="hidden-bar">write</p>
+                <p class="hidden-bar">something</p>
+                <p class="hidden-bar">fun</p>
+            </div>
+        </div>
+
+        <div id="form-buttons">
+            <button type="submit" id="post-new-khote">Send that</button>
+            <div id="auto-fav">
+                <i class="glyphicon glyphicon-heart-empty"></i></div>
+        </div>
+    </form>
+</div>
+</div>
+
+
+<div id="login-page-tpl">
+<div>
+    <form method="post" action="login.php">
+        <h1>Welcome</h1>
+        <input type="text" id="username" name="username" placeholder="username"/>
+        <input type="password" id="password" name="password" placeholder="*******"/>
+        <div id="form-buttons">
+            <button type="submit" id="post-new-khote">Login</button>
+        </div>
+    </form>
+</div>
