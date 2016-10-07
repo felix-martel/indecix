@@ -1,15 +1,3 @@
-var data = {
-    "khotes": [
-    {"khote_id": 1, "khoteur": "F**ix M*rt*l", "khote": "ceci est un test je crois", "up-number": 76, "down-number": 37, "fav-number": 8},
-    {"khote_id": 1, "khoteur": "F**ix M*rt*l", "khote": "encore un test à mon avis", "up-number": 76, "down-number": 37, "fav-number": 8},
-    {"khote_id": 1, "khoteur": "F**ix M*rt*l", "khote": "tiens mais hello world lol", "up-number": 76, "down-number": 37, "fav-number": 8},
-    {"khote_id": 1, "khoteur": "F**ix M*rt*l", "khote": "voici un test, le numéro 10", "up-number": 76, "down-number": 37, "fav-number": 8},
-    {"khote_id": 1, "khoteur": "F**ix M*rt*l", "khote": "ceci est un test je crois", "up-number": 76, "down-number": 37, "fav-number": 8},
-    {"khote_id": 1, "khoteur": "F**ix M*rt*l", "khote": "encore un test à mon avis", "up-number": 76, "down-number": 37, "fav-number": 8},
-    {"khote_id": 1, "khoteur": "F**ix M*rt*l", "khote": "tiens mais hello world lol", "up-number": 76, "down-number": 37, "fav-number": 8},
-    {"khote_id": 1, "khoteur": "F**ix M*rt*l", "khote": "voici un test, le numéro 10", "up-number": 76, "down-number": 37, "fav-number": 8}
-]}
-;
 console.log("init ok");
 /*$('#container').bind('swipeleft', goLeft);
 $('#container').bind('swiperight', goRight);*/
@@ -37,6 +25,57 @@ $(".menu-item-a").click(function() {
 
 serverURL = '';
 
+
+function login() {
+    var username = $("input[name='username']").val();
+    var password = $("input[name='password']").val();
+    alert("Envoi des données");
+    console.log("Envoi des données...");
+    $.post(serverURL + 'login.php', {username: username, password: password}, 
+        function(messageJson) {
+            console.log('lecture json');
+            var messageAffiche = "";
+            for (var i=0; i < messageJson.length; i++) {
+                if (messageJson[i].session_id) {
+                    sessionStorage['session_id'] = messageJson[i].session_id;
+                    console.log('session id =' + sessionStorage['session_id']);
+                }
+                if (messageJson[i].error) {
+                    messageAffiche = "Error : " + messageJson[i].error;
+                    alert(messageAffiche);
+                }
+                else if (messageJson[i].success) {
+                    console.log("Bienvenue");
+                    window.location.replace("index.html");
+                }
+            }
+        });
+    window.location.replace("index.html");
+}
+
+function login2() {
+    $.ajax({
+      type:    "POST",
+      url:     "/"+contentId+"/postComment",
+      data:    {"postComment":""},
+      success: function(data) {
+            alert('call back');
+      },
+      // vvv---- This is the new bit
+      error:   function(jqXHR, textStatus, errorThrown) {
+            alert("Error, status = " + textStatus + ", " +
+                  "error thrown: " + errorThrown
+            );
+      }
+    });
+}
+
+function add_khote() {
+    var khoteur = $("input[name='khoteur']").val();
+    var khote = $("input[name='khote']").val();
+    $.post(serverURL + 'add.php', {khoteur: khoteur, khote: khote});
+}
+
 $(window).on('hashchange', route);
 function route() {
     var page, hash = window.location.hash;
@@ -52,8 +91,9 @@ function route() {
         case '#all':
             $.get('js/template.html', function(templates) {
                 var template = $(templates).filter('#main-tpl').html();
-                $.getJSON(serverURL + "get.php?filter=all", 
+                $.getJSON(serverURL + "get.php?MODAL="+sessionStorage['session_id']+"&filter=all", 
                     function(data) {
+                    console.log("get OK");
                     page = Mustache.render(template, data);
                     $('#container').html(page);
                 });

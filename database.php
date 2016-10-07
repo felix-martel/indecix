@@ -6,10 +6,13 @@ class Database {
 		$pwd = ''; //modal
 		$dbh = null;
 
-		/*$dsn  = "mysql:dbname=db646744700;host=db646744700.db.1and1.com";
+		/*
+		$dsn  = "mysql:dbname=db646744700;host=db646744700.db.1and1.com";
 		$database   = "db646744700";
 		$user  = "dbo646744700";
-		$pwd   = "Khotes!X2015";*/
+		$pwd   = "Khotes!X2015";
+		*/
+		
 		try {
 			$dbh = new PDO($dsn, $user, $pwd, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -20,6 +23,5 @@ class Database {
 		}
 		return $dbh;
 	}
-
 
 }

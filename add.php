@@ -1,34 +1,16 @@
 <?php
+ini_set('session.use_cookies', 0);
+ini_set('session.use_only_cookies', 0);
+ini_set('session.use_trans_sid', 1);
+session_name('MODAL');
 session_start();
-/*	$host_name  = "db646744700.db.1and1.com";
-	$database   = "db646744700";
-	$user_name  = "dbo646744700";
-	$password   = "Khotes!X2015";
 
-	$connect = mysqli_connect($host_name, $user_name, $password, $database);
- if(mysqli_connect_errno())
-    {
-    '<p>Échec de la connexion à la base de données : '.mysqli_connect_error().'</p>';
-    }
-    else
-    {
-    '<p>Connexion réussie à la base de données.</p>';
-    }*/
 require_once('database.php');
 
 function add_khote($user_id, $khoteur, $khote) 
 {
 	if (strlen($khoteur)>0 && strlen($khote)>0)
 	{
-		/*try
-		{
-			$bdd = new PDO('mysql:host=localhost;dbname=indecix;charset=utf8', 'root', '0000');
-			array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : '. $e->getMessage());
-		}*/
 		$bdd = Database::connect();
 
 		// Insertion de la khote
@@ -53,7 +35,7 @@ function add_khote($user_id, $khoteur, $khote)
 
 // Ajout et redirection
 add_khote($_SESSION['user_id'], $_POST['khoteur'], $_POST['khote']);
-header('Location: index.html#all');
+//header('Location: index.html#all');
 
 
 ?>

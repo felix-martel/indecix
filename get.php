@@ -1,5 +1,10 @@
 <?php
+ini_set('session.use_cookies', 0);
+ini_set('session.use_only_cookies', 0);
+ini_set('session.use_trans_sid', 1);
+session_name('MODAL');
 session_start();
+
 require_once('database.php');
 
 $query_all = 	'SELECT khote_id, khoteur, khote, up, down, fav 
@@ -36,14 +41,20 @@ function get_khotes($filter, $user_id)
 
 
 // Ajout et redirection
-$user = $_SESSION['user_id'];
-if ((isset($_GET['filter']) && $_GET['filter'] = 'all') || !isset($_GET['filter'])){
-	get_khotes($query_all, $user);
+if (isset($_SESSION['user_id'])) {
+	$user = $_SESSION['user_id'];
+	if ((isset($_GET['filter']) && $_GET['filter'] == 'all') || !isset($_GET['filter'])){
+		get_khotes($query_all, $user);
+	}
+	elseif (isset($_GET['filter']) && $_GET['filter'] == 'top') {
+		get_khotes($query_top, $user);
+	}
+	elseif (isset($_GET['filter']) && $_GET['filter'] == 'fav') {
+		get_khotes($query_fav, $user);
+	}
 }
-elseif (isset($_GET['filter']) && $_GET['filter'] = 'top') {
-	get_khotes($query_top, $user);
+else {
+	echo '$_SESSION["user_id"] n\'est pas défini';
 }
-elseif (isset($_GET['filter']) && $_GET['filter'] = 'fav') {
-	get_khotes($query_fav, $user);
-}
+
 ?>

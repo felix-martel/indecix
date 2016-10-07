@@ -45,7 +45,7 @@
         </div>
 
         <div id="form-buttons">
-            <button type="submit" id="post-new-khote">Send that</button>
+            <button type="submit" id="post-new-khote" onclick="add_khote();">Send that</button>
             <div id="auto-fav">
                 <i class="glyphicon glyphicon-heart-empty"></i></div>
         </div>
@@ -56,12 +56,12 @@
 
 <div id="login-page-tpl">
 <div>
-    <form method="post" action="login.php">
+    <form><!--<form method="post" action="login.php">-->
         <h1>Welcome</h1>
         <input type="text" id="username" name="username" placeholder="username"/>
         <input type="password" id="password" name="password" placeholder="*******"/>
         <div id="form-buttons">
-            <button type="submit" id="post-new-khote">Login</button>
+            <button type="submit" id="post-new-khote" onclick="login();">Login</button>
         </div>
     </form>
 </div>

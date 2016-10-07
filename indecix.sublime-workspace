@@ -4,8 +4,16 @@
 		"selected_items":
 		[
 			[
+				"se",
+				"session_id"
+			],
+			[
+				"sess",
+				"sessionStorage"
+			],
+			[
 				"margin",
-				"margin-right"
+				"margin-bottom"
 			],
 			[
 				"word",
@@ -223,7 +231,31 @@
 			"file": "add.php",
 			"settings":
 			{
-				"buffer_size": 1457,
+				"buffer_size": 897,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "get.php",
+			"settings":
+			{
+				"buffer_size": 1413,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "login.php",
+			"settings":
+			{
+				"buffer_size": 1605,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "database.php",
+			"settings":
+			{
+				"buffer_size": 616,
 				"line_ending": "Windows"
 			}
 		},
@@ -236,50 +268,26 @@
 			}
 		},
 		{
-			"file": "js/template.html",
-			"settings":
-			{
-				"buffer_size": 2226,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "css/indecix.css",
-			"settings":
-			{
-				"buffer_size": 3165,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "js/index.js",
 			"settings":
 			{
-				"buffer_size": 3435,
+				"buffer_size": 5034,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/felix/Documents/Dev/Verbotron/phrase.php",
+			"file": "js/template.html",
 			"settings":
 			{
-				"buffer_size": 2084,
+				"buffer_size": 2706,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/felix/Documents/Dev/Verbotron/test.php",
+			"file": "logout.php",
 			"settings":
 			{
-				"buffer_size": 7,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/felix/Documents/Dev/Verbotron/update.php",
-			"settings":
-			{
-				"buffer_size": 1051,
+				"buffer_size": 82,
 				"line_ending": "Windows"
 			}
 		}
@@ -333,9 +341,14 @@
 	},
 	"file_history":
 	[
+		"/C/Users/felix/Documents/Dev/Verbotron/update.php",
+		"/C/Users/felix/Documents/Dev/Verbotron/mainpage.php",
+		"/C/Users/felix/Documents/Dev/Verbotron/phrase.php",
+		"/C/Users/felix/Documents/Dev/Modal/td1/www/indecix/css/indecix.css",
+		"/C/Users/felix/Documents/Dev/Modal/td1/www/indecix/logout.php",
+		"/C/Users/felix/Documents/Dev/Verbotron/test.php",
 		"/C/Users/felix/Documents/Dev/Modal/td1/www/js/template.html",
 		"/C/Users/felix/Documents/Dev/Ricochey/script/friends.js",
-		"/C/Users/felix/Documents/Dev/Verbotron/mainpage.php",
 		"/C/Users/felix/Documents/Dev/Modal/td1/www/js/index.js",
 		"/C/Users/felix/Documents/Dev/Modal/td1/www/index.html",
 		"/C/Users/felix/Documents/Dev/Verbotron/cancel.php",
@@ -418,6 +431,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"query_top",
+			"echo",
 			"<a id=\"bouton-retour\" onclick=\"window.history.back();\">",
 			"a onclick=\"window.history.back();\"",
 			"$.get('template.html'",
@@ -460,7 +475,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -469,15 +484,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1457,
+						"buffer_size": 897,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								104,
+								104
 							]
 						],
 						"settings":
@@ -486,7 +501,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 238.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
@@ -494,6 +509,94 @@
 				},
 				{
 					"buffer": 1,
+					"file": "get.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1413,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1366,
+								1366
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 66.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "login.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1605,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5,
+								5
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "database.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 616,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58,
+								58
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "index.html",
 					"semi_transient": false,
 					"settings":
@@ -519,24 +622,54 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "js/template.html",
+					"buffer": 5,
+					"file": "js/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2226,
+						"buffer_size": 5034,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								124,
-								124
+								3317,
+								3317
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1210.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "js/template.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2706,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2119,
+								2119
 							]
 						],
 						"settings":
@@ -553,109 +686,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "css/indecix.css",
+					"buffer": 7,
+					"file": "logout.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3165,
+						"buffer_size": 82,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2521,
-								2521
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2415.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "js/index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3435,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2182,
-								2182
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 111.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/C/Users/felix/Documents/Dev/Verbotron/phrase.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2084,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/C/Users/felix/Documents/Dev/Verbotron/test.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								79,
+								79
 							]
 						],
 						"settings":
@@ -666,36 +710,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/C/Users/felix/Documents/Dev/Verbotron/update.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1051,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
