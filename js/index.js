@@ -50,7 +50,7 @@ function login() {
                 }
             }
         });
-    window.location.replace("index.html");
+    window.location.replace("index.html#all");
 }
 
 function login2() {
@@ -100,20 +100,27 @@ function route() {
             }, 'html');
             break;
 
-
         case '#top':
             $.get('js/template.html', function(templates) {
                 var template = $(templates).filter('#main-tpl').html();
-                page = Mustache.render(template, data);
-                $('#container').html(page);
+                $.getJSON(serverURL + "get.php?MODAL="+sessionStorage['session_id']+"&filter=top", 
+                    function(data) {
+                    console.log("get OK");
+                    page = Mustache.render(template, data);
+                    $('#container').html(page);
+                });
             }, 'html');
             break;
 
         case '#fav':
             $.get('js/template.html', function(templates) {
                 var template = $(templates).filter('#main-tpl').html();
-                page = Mustache.render(template, data);
-                $('#container').html(page);
+                $.getJSON(serverURL + "get.php?MODAL="+sessionStorage['session_id']+"&filter=fav", 
+                    function(data) {
+                    console.log("get OK");
+                    page = Mustache.render(template, data);
+                    $('#container').html(page);
+                });
             }, 'html');
             break;
 
@@ -136,8 +143,12 @@ function route() {
         default:
             $.get('js/template.html', function(templates) {
                 var template = $(templates).filter('#main-tpl').html();
-                page = Mustache.render(template, data);
-                $('#container').html(page);
+                $.getJSON(serverURL + "get.php?MODAL="+sessionStorage['session_id']+"&filter=all", 
+                    function(data) {
+                    console.log("get OK");
+                    page = Mustache.render(template, data);
+                    $('#container').html(page);
+                });
             }, 'html');
             break;
     }
