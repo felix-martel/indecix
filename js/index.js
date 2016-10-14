@@ -1,22 +1,33 @@
-$('#container').bind('swipeleft', goLeft);
-$('#container').bind('swiperight', goRight);
-
-var current_page = 0; // 1 : ALL, 2 : TOP, 3 : FAV
-var page_href = ['#all', '#top', '#fav'];
-var nb_pages = 3;
-
+// Activation FastClick = réduit la latence sur mobile
 window.addEventListener('load', function () {
     new FastClick(document.body);
 }, false);
 
+// --- Navigation tactile par swipe gauche et droit --- \\
+
+var current_page = 0; // 1 : ALL, 2 : TOP, 3 : FAV
+var page_href = ['#all', '#top', '#fav'];
+var nb_pages = 3;
+$('#container').bind('swipeleft', goLeft);
+$('#container').bind('swiperight', goRight);
+function setCurrentPage(n){
+    if (n >= 0 && n < nb_pages){
+        current_page = n;
+        n = n+1;
+        $(".menu-item-a").removeClass("active");
+        $(".menu-item-a:nth-of-type("+n+")").addClass("active");
+    }
+}
 function goLeft() {
-    current_page = (current_page + 1) % nb_pages;
+    setCurrentPage((current_page + 1) % nb_pages);
     window.location = "index.html" + page_href[current_page];
+    console.log("Going left...");
 }
 
 function goRight() {
-    current_page = (current_page + 2) % nb_pages;
+    setCurrentPage((current_page + 2) % nb_pages);
     window.location = "index.html" + page_href[current_page];
+    console.log("Going right...");
 }
 
 function activateTitles(e){
@@ -24,15 +35,8 @@ function activateTitles(e){
     $('.menu-item-a').removeClass("active");
     $(e).addClass("active");
 }
-/*
-$(".menu-item-a").click(function() {
-    console.log("active nav link ok");
-    $('.menu-item-a').removeClass("active");
-    $(this).addClass("active");
-});*/
 
 serverURL = '';
-
 
 function login() {
     var username = $("input[name='username']").val();
