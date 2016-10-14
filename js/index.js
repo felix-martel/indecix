@@ -1,8 +1,8 @@
 $('#container').bind('swipeleft', goLeft);
 $('#container').bind('swiperight', goRight);
 
-var current_page = 1; // 1 : ALL, 2 : TOP, 3 : FAV
-var page_href = ['#login', '#all', '#top', '#fav', '#settings', '#new'];
+var current_page = 0; // 1 : ALL, 2 : TOP, 3 : FAV
+var page_href = ['#all', '#top', '#fav'];
 var nb_pages = 3;
 
 window.addEventListener('load', function () {
@@ -10,18 +10,14 @@ window.addEventListener('load', function () {
 }, false);
 
 function goLeft() {
-    var current_page = (current_page + 1) % nb_pages;
+    current_page = (current_page + 1) % nb_pages;
     window.location = "index.html" + page_href[current_page];
-    /*
-    if ($('menu-item-top').hasClass('active')) {
-        window.open('#all', '_self');
-    }
-    else if ($('menu-item-fav').hasClass('active')) {
-        window.open('#top', '_self');
-    }*/
 }
 
-function goRight() {}
+function goRight() {
+    current_page = (current_page + 2) % nb_pages;
+    window.location = "index.html" + page_href[current_page];
+}
 
 function activateTitles(e){
     console.log("Activation...");
