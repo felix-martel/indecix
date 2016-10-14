@@ -7,6 +7,8 @@ session_start();
 
 require_once('database.php');
 
+header('Access-Control-Allow-Origin:*');
+
 function add_khote($user_id, $khoteur, $khote) 
 {
 	if (strlen($khoteur)>0 && strlen($khote)>0)
