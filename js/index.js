@@ -70,7 +70,7 @@ function add_khote() {
     console.log(new_khoteur);
     console.log(new_khote);
     $.post(
-        "add.php",
+        serverURL + "add.php",
         {MODAL : sessionStorage['session_id'], khoteur : new_khoteur, khote: new_khote},
         function(data) {
         }
