@@ -7,7 +7,7 @@ session_start();
 
 require_once('database.php');
 
-
+header('Access-Control-Allow-Origin:*');
 
 function get_khotes($filter, $user_id) 
 {
@@ -75,7 +75,7 @@ if (isset($_SESSION['user_id'])) {
 	}
 }
 else {
-	echo '$_SESSION["user_id"] n\'est pas défini';
+	echo json_encode('not_logged_in');
 }
 
 ?>
