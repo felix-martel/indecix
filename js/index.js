@@ -58,10 +58,16 @@ function login() {
 }
 
 function add_khote() {
-    var khoteur = $("input[name='khoteur']").val();
-    var khote = $("input[name='khote']").val();
-    $.post(serverURL + 'add.php', 
-        {khoteur: khoteur, khote: khote, MODAL: sessionStorage['session_id']});
+    var new_khoteur = $("input[name='khoteur']").val();
+    var new_khote = $("textarea[name='khote']").val();
+    console.log(new_khoteur);
+    console.log(new_khote);
+    $.post(
+        "add.php",
+        {MODAL : sessionStorage['session_id'], khoteur : new_khoteur, khote: new_khote},
+        function(data) {
+        }
+    );
     console.log("OK c'est parti");
     window.location.replace("index.html#all");
 }
