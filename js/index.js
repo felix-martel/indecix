@@ -35,7 +35,7 @@ $(".menu-item-a").click(function() {
     $(this).addClass("active");
 });*/
 
-serverURL = '';
+serverURL = 'http://perone.polytechnique.fr/~vivien.dahan/';
 
 
 function login() {
@@ -89,6 +89,9 @@ function route() {
                 var template = $(templates).filter('#main-tpl').html();
                 $.getJSON(serverURL + "get.php?MODAL="+sessionStorage['session_id']+"&filter=all", 
                     function(data) {
+                        if (data === "not_logged_in") {
+                            window.location.replace("index.html#login");
+                        }
                     page = Mustache.render(template, data);
                     $('#container').html(page);
                 });
@@ -100,6 +103,9 @@ function route() {
                 var template = $(templates).filter('#main-tpl').html();
                 $.getJSON(serverURL + "get.php?MODAL="+sessionStorage['session_id']+"&filter=top", 
                     function(data) {
+                        if (data === "not_logged_in") {
+                            window.location.replace("index.html#login");
+                        }
                     page = Mustache.render(template, data);
                     $('#container').html(page);
                 });
@@ -111,6 +117,9 @@ function route() {
                 var template = $(templates).filter('#main-tpl').html();
                 $.getJSON(serverURL + "get.php?MODAL="+sessionStorage['session_id']+"&filter=fav", 
                     function(data) {
+                        if (data === "not_logged_in") {
+                            window.location.replace("index.html#login");
+                        }
                     page = Mustache.render(template, data);
                     $('#container').html(page);
                 });
@@ -138,6 +147,9 @@ function route() {
                 var template = $(templates).filter('#main-tpl').html();
                 $.getJSON(serverURL + "get.php?MODAL="+sessionStorage['session_id']+"&filter=all", 
                     function(data) {
+                        if (data === "not_logged_in") {
+                            window.location.replace("index.html#login");
+                        }
                     console.log("get OK");
                     page = Mustache.render(template, data);
                     $('#container').html(page);
