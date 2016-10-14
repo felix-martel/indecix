@@ -1,8 +1,8 @@
 <div id="main-tpl">
     <ul class="main-menu">
-        <li id="menu-item-all" class="menu-item"><a class="menu-item-a active" href="#all">All</a></li>
-        <li id="menu-item-top" class="menu-item"><a class="menu-item-a" href="#top">Top</a></li>
-        <li id="menu-item-fav" class="menu-item"><a class="menu-item-a" href="#fav">Fav</a></li>
+        <li id="menu-item-all" class="menu-item"><a class="menu-item-a" href="#all" onclick="activateTitles(this);">All</a></li>
+        <li id="menu-item-top" class="menu-item"><a class="menu-item-a" href="#top" onclick="activateTitles(this);">Top</a></li>
+        <li id="menu-item-fav" class="menu-item"><a class="menu-item-a" href="#fav" onclick="activateTitles(this);">Fav</a></li>
     </ul>
     <div>
         <ul id="khote-list">
@@ -31,7 +31,7 @@
 <div id="writing-page-tpl">
 <div>
     <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.history.back();"></i>
-    <form method="post" action="add.php">
+    <form><!--method="post" action="add.php"-->
         <h1>Add new</h1>
         <input type="text" id="khoteur-input" name="khoteur" placeholder="S*meb*dy"/>
         <p class="khote-separator">khote</p>
@@ -45,7 +45,7 @@
         </div>
 
         <div id="form-buttons">
-            <button type="submit" id="post-new-khote" onclick="add_khote();">Send that</button>
+            <button type="button" id="post-new-khote" onclick="add_khote();">Send that</button>
             <div id="auto-fav">
                 <i class="glyphicon glyphicon-heart-empty"></i></div>
         </div>
@@ -61,7 +61,7 @@
         <input type="text" id="username" name="username" placeholder="username"/>
         <input type="password" id="password" name="password" placeholder="*******"/>
         <div id="form-buttons">
-            <button type="submit" id="post-new-khote" onclick="login();">Login</button>
+            <button type="button" id="post-new-khote" onclick="console.log('Template.html'); login();">Login</button>
         </div>
     </form>
 </div>
