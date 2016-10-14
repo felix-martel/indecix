@@ -9,6 +9,19 @@ body {
   color: white;
 }
 
+#logo {
+  margin-top: 33vh;
+  width: 100%;
+  transform: rotate(-10deg) translateY(-50%);
+  text-align: center;
+  font-size: 70px;
+  text-shadow: 1px 1px 0 black,
+              2px 2px 0 black,
+              3px 3px 0 black,
+              4px 4px 0 black,
+              5px 5px 0 black,
+              6px 6px 0 black;
+}
 .main-menu {
   position: fixed;
   top: 0;
