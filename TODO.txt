@@ -1,8 +1,10 @@
 TODO :
 
+
+>>> À déboguer :
+- Dans le menu <nav>, le lien vers la page active doit porter la classe .active qui permet de le mettre en exergue par rapport aux autres liens. Or pour l'instant, le comportement est un peu bizarre (je crois que le double-clic fonctionne pour l'activation)
+
 >>> Ce qu'on peut faire seuls :
-- Gérer l'ajout de khôtes (:fichier add.php)
-- Gérer l'affichage de khôtes (:fichier get.php) (que ce soit All, Top, ou Fav)
 - Gérer le système de vote et de fav (:fichier react.php)
 - Gérer la modération des khôtes (:fichier delete.php)
 - Gérer les utilisateurs (:fichiers sign_in.php, sign_up.php)
