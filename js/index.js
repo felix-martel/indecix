@@ -79,14 +79,13 @@ function add_khote() {
 }
 
 function action(action, id) {
-    alert(action + " sur khote " + id);
     $.post(
             serverURL + "action.php",
             {MODAL: sessionStorage['session_id'], action: action, id: id},
             function (data) {
             }
     );
-    alert("Action effectuée");
+    alert("Action effectuée !");  //Le alert a l'utilité d'éviter d'actualiser la page avant la fin du POST, sinon celui-ci échoue !
     window.location.reload();
 }
 
