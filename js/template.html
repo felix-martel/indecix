@@ -11,13 +11,13 @@
                     <p class="khote-text">
                         {{khoteur}}<span> khote </span>{{khote}}
                     </p>
-                    <button class="khote-button up-number">
+                    <button class="khote-button up-number" onclick="action('up', {{khote_id}});">
                         {{up}}<i class="glyphicon glyphicon-arrow-up"></i>
                     </button>
-                    <button class="khote-button  down-number">
+                    <button class="khote-button  down-number" onclick="action('down', {{khote_id}});">
                         {{down}}<i class="glyphicon glyphicon-arrow-down"></i>
                     </button>
-                    <button class="khote-button  fav-number">
+                    <button class="khote-button  fav-number"  onclick="action('fav', {{khote_id}});">
                         {{fav}}<i class="glyphicon glyphicon-heart"></i>
                     </button>
                 </li>
