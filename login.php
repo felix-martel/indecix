@@ -21,7 +21,7 @@ if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) 
     require('database.php');
     $dbh = Database::connect();
 
-    $query = 'SELECT user_id, name, password FROM user WHERE name=:username AND password=:pwd';
+    $query = 'SELECT user_id, name, password FROM user WHERE name=:username AND password=SHA1(:pwd)';
     $sth = $dbh->prepare($query);
     $sth->execute(array(
         'username' => $_POST['username'],
