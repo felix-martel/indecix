@@ -14,7 +14,7 @@ function action($user_id, $action, $id) {
 
     $dbh = Database::connect();
 
-    $query = 'SELECT '.$action.' FROM relation WHERE user_id = :user_id AND khote_id = :id';
+    $query = 'SELECT '.$action.'ed FROM relation WHERE user_id = :user_id AND khote_id = :id';
     $sth = $dbh->prepare($query);
     $sth->execute(array(
     'user_id' => $user_id,
@@ -22,22 +22,18 @@ function action($user_id, $action, $id) {
     ));
     
     $result = $sth->fetch();
-    if ($result[$action] == 0) {
+    if ($result[$action + 'ed'] == 0) {
         $operand = '+';
     }
     else { $operand = '-';
     }
 
-    $dbh = Database::connect();
-
-    $query = 'UPDATE relation SET '.$action.' = '.$action.' '.$operand.' 1 WHERE khote_id = :id AND user_id = :user_id';
+    $query = 'UPDATE relation SET '.$action.'ed = '.$action.'ed '.$operand.' 1 WHERE khote_id = :id AND user_id = :user_id';
     $sth = $dbh->prepare($query);
     $sth->execute(array(
         'id' => $id,
         'user_id' => $user_id
     ));
-
-    $dbh = Database::connect();
 
     $query = 'UPDATE khote SET '.$action.' = '.$action.' '.$operand.' 1 WHERE khote_id = :id';
     $sth = $dbh->prepare($query);
