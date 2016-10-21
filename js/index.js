@@ -86,7 +86,7 @@ function action(action, id) {
             function (data) {
             }
     );
-    console.log("Action effectuée");
+    alert("Action effectuée");
     window.location.reload();
 }
 
