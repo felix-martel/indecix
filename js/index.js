@@ -36,6 +36,8 @@ function activateTitles(e) {
     $(e).addClass("active");
 }
 
+
+//serverURL = '';
 serverURL = 'http://perone.polytechnique.fr/~vivien.dahan/';
 
 function login() {
@@ -56,7 +58,7 @@ function login() {
                         alert(messageAffiche);
                     } else if (messageJson[i].success) {
                         console.log("Bienvenue");
-                        window.location.replace("index.html");
+                        window.location.replace("index.html#all");
                     }
                 }
             });
@@ -83,10 +85,11 @@ function action(action, id) {
             serverURL + "action.php",
             {MODAL: sessionStorage['session_id'], action: action, id: id},
             function (data) {
+                window.location.reload();
             }
     );
-    alert("Action effectuée !");  //Le alert a l'utilité d'éviter d'actualiser la page avant la fin du POST, sinon celui-ci échoue !
-    window.location.reload();
+    //alert("Action effectuée !");  //Le alert a l'utilité d'éviter d'actualiser la page avant la fin du POST, sinon celui-ci échoue !
+    //window.location.reload();
 }
 
 $(window).on('hashchange', route);
