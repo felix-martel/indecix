@@ -1,12 +1,12 @@
 body {
   font-size: 1.7em;
-  background-color: #673AB7;
+  background-color: #673AB7; /*violet*/
   padding: 1em;
 }
 
 * {
   font-family: 'Montserrat', sans-serif;
-  color: white;
+  color: white;/*blanc*/
 }
 
 #logo {
@@ -32,7 +32,7 @@ body {
   margin: 0;
   height: 50px;
   width: 100%;
-  background-color: #673AB7;
+  background-color: #673AB7; /*violet*/
   z-index: 1;
 }
 
@@ -41,14 +41,19 @@ body {
   list-style: none;
 }
 
-
+/*
 .main-menu a.active {
+  opacity: 1;
+  transition: opacity 0.25s;
+}*/
+
+.menu-item.active  a, .main-menu a.active {
   opacity: 1;
   transition: opacity 0.25s;
 }
 
 .main-menu a {
-  color: white;
+  color: inherit;
   opacity: 0.5;
   display: inline-block;
   text-transform: uppercase;
@@ -94,7 +99,7 @@ h1 {
 #post-new-khote {
   background-color: transparent;
   color: white;
-  border: 2px solid white;
+  border: 2px solid white;/*blanc*/
   border-radius: 0.2em;
   outline: none;
   padding: 0.2em 0.5em;
@@ -105,7 +110,7 @@ h1 {
 }
 
 input[type="submit"]:hover {
-  background-color: white;
+  background-color: white; /*blanc*/
   color: #673AB7;
 }
 
@@ -114,7 +119,7 @@ input[type="text"], input[type="password"], textarea {
   width: 100%;
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);/*blanc*/
   outline: none;
   margin-bottom: 10px;
 }
@@ -130,7 +135,7 @@ textarea {
   position: relative;
 }
 .hidden-bar {
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);/*blanc*/
   color: transparent;
   width: 100%;
   font-size: 1.6em;
