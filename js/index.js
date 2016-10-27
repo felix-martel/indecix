@@ -165,6 +165,15 @@ function route() {
             }, 'html');
             break;
 
+        case '#logout':
+            $.get(serverURL + 'logout.php?MODAL=' + sessionStorage['session_id'], function(){
+                console.log("Logging out...");
+            }, 'html');
+            delete sessionStorage['session_id'];
+            window.location.replace(serverURL + 'index.html#login');
+            break;
+
+
         default:
             $.get('js/template.html', function (templates) {
                 var template = $(templates).filter('#main-tpl').html();
