@@ -59,25 +59,28 @@ function login() {
                         sessionStorage['session_id'] = messageJson[i].session_id;
                         console.log('Login : session id =' + sessionStorage['session_id']);
                     }
-                    if (messageJson[i].error) {
-                        var err = messageJson[i].error;
-                        switch (err) {
-                            case 'unverified_account':
-                                $("#alert-account-unverified").show(400);
-                                break;
-                            default:
-                                message = "Error : " + err;
-                                //alert(message);
-                                console.log(message);
+                    if (messageJson[i].status) {
+                        if (messageJson[i].status == 'success') {
+                            console.log("Logging in successful");
+                            window.location.replace("index.html#all");
+                        }
+                        else {
+                            // Affichage d'un message d'avertissement
+                            var error = messageJson[i];
+                            $('#alert-message').html(error.detail);
+                            $('#alert-message').show(400);
+                            // Réinitialisation du formulaire
+                            $("input[name='username']").val("");
+                            $("input[name='password']").val("");
                         }
                     } 
-                    else if (messageJson[i].success) {
+                    /*else if (messageJson[i].success) {
                         console.log("Logging in successful");
                         window.location.replace("index.html#all");
-                    }
+                    }*/
                 }
             });
-    window.location.replace("index.html#all");
+    //window.location.replace("index.html#all");
 }
 
 function add_khote() {

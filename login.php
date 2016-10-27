@@ -15,12 +15,41 @@ header('Access-Control-Allow-Origin:*');
 
 // tableau pour la gestion des erreurs
 $msgJson = array();
+$statusMessage = array('status' => 'error', 'code' => 'default_error', 'detail' => 'Unknown error');
 
-function sendMessage($key, $value){
+function addMessage($key, $value){
     global $msgJson;
     $msg = array($key => $value);
     array_push($msgJson, $msg);
 }
+function setStatus($success, $text){
+    global $statusMessage;
+    if ($success){
+        $statusMessage['status'] = 'success';
+        $statusMessage['code'] = '';
+    }
+    else {
+        $statusMessage['status'] = 'error';
+        $statusMessage['code'] = $text;
+        switch($text) {
+            case 'empty_field':
+                $statusMessage['detail'] = 'Username or password is empty';
+                break;
+            case 'user_doesnt_exist':
+                $statusMessage['detail'] = 'This user/password does not match any existing user';
+                break;
+            case 'unverified_account':
+                $statusMessage['detail'] = 'Your account has not been verified. Please click on the activation link';
+                break;
+            default:
+                $statusMessage['detail'] = 'Unknown error';
+                break;
+
+        }
+    }
+    
+}
+
 // Vérification des champs input envoyés par POST
 if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])) {
     require('database.php');
@@ -37,7 +66,7 @@ if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) 
     if ($result === 1) {
         $row = $sth->fetch(PDO::FETCH_ASSOC);
         // DEBUG ONLY : on envoie le statut (verified ou non) au client
-        sendMessage('verified', $row['verified']);
+        addMessage('verified', $row['verified']);
         if ($row['verified'] == '1'){
             //success
             // on envoie le numéro de session au client (évite d'avoir une session en cas d'echec de connexion)
@@ -49,19 +78,28 @@ if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) 
             $user_id = $row['user_id'];
             //echo 'user_id = '. $user_id;
             $_SESSION['user_id'] = $user_id;
+            //addMessage('status', 'success');
+            setStatus(true, '');
         }
         else {
             $msg = array('error' => 'unverified_account');
+            //addMessage('status', 'error');
+            setStatus(false, 'unverified_account');
         }
     } else {
         $msg = array('error' => 'Fail');
+        //addMessage('status', 'error');
+        setStatus(false, 'user_doesnt_exist');
     }
 } else {
     $msg = array('error' => 'Login or password is not set');
+    //addMessage('status', 'error');
+    setStatus(false, 'empty_field');
 }
 
 // on affiche l'erreur ou le succès
 array_push($msgJson, $msg);
+array_push($msgJson, $statusMessage);
 echo json_encode($msgJson);
 //header('Location: index.html#all');
 ?>
