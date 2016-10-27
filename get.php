@@ -14,9 +14,12 @@ require_once('database.php');
 function get_khotes($filter, $user_id) 
 {
 	$queries = array(
-	'all' => 	'SELECT khote_id, khoteur, khote, up, down, fav, flag 
-				FROM khote 
-				ORDER BY date DESC 
+	'all' => 	'SELECT k.khote_id, k.khoteur, k.khote, k.up, r.uped, k.down, r.downed, k.fav, r.faved, k.flag, r.flaged 
+				FROM khote AS k
+				LEFT JOIN relation  AS r 
+				ON k.khote_id = r.khote_id 
+				WHERE r.user_id = :user
+				ORDER BY k.date DESC 
 				LIMIT 100',
 	'top' =>	'SELECT khote_id, khoteur, khote, up, down, fav, flag 
 				FROM khote 

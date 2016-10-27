@@ -96,13 +96,14 @@ h1 {
   font-size: 1.3em;
   margin-left: 25px;
 }
-#post-new-khote {
+button.regular {
   background-color: transparent;
   color: white;
   border: 2px solid white;/*blanc*/
   border-radius: 0.2em;
   outline: none;
   padding: 0.2em 0.5em;
+  font-size: 1.3em;
 }
 #form-buttons {
   margin-top: 28px;
@@ -212,18 +213,14 @@ textarea {
 
 .up-number, .down-number, .fav-number, .flag-number {
 }
-/*
-.up-number {
-  border-radius: 0 0 0 2px;
-  color: limegreen;
-}
 
-.down-number {
-  color: orangered;
+
+.switch_form, .switch_form:visited, .switch_form:hover, .switch_form:focus {
+  display: block;
+  opacity: 0.8;
+  color: white;
+  text-decoration: none;
+  margin-top: 20px;
 }
-.fav-number {
-  border-radius: 0 0 2px 0;
-  
-}*/
 
 

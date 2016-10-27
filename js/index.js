@@ -46,6 +46,10 @@ $('#container').bind('swiperight', goRight);
 serverURL = '';
 //serverURL = 'http://perone.polytechnique.fr/~vivien.dahan/';
 
+function clear_login() {
+    $("input[name='username']").val("");
+    $("input[name='password']").val("");
+}
 function login() {
     var username = $("input[name='username']").val();
     var password = $("input[name='password']").val();
@@ -53,6 +57,63 @@ function login() {
     $.post(serverURL + 'login.php', {username: username, password: password},
             function (messageJson) {
                 console.log('Login : réception JSON');
+                var messageAffiche = "";
+                for (var i = 0; i < messageJson.length; i++) {
+                    if (messageJson[i].session_id) {
+                        sessionStorage['session_id'] = messageJson[i].session_id;
+                        console.log('Login : session id =' + sessionStorage['session_id']);
+                    }
+                    if (messageJson[i].error) {
+                        if (messageJson[i].error == 'unverified'){
+                            messageAffiche = "Unverified account : " + messageJson[i].error;
+                            //alert(messageAffiche);
+                            console.log(messageAffiche);
+                            $("#alert-account-unverified").show(400);
+                            return false;
+                        }
+                        else {
+                            messageAffiche = "Error : " + messageJson[i].error;
+                            alert(messageAffiche);
+                            console.log(messageAffiche);
+                            clear_login();
+                            return  false;
+                        }
+                    } else if (messageJson[i].success) {
+                        console.log("Logging in successful");
+                        window.location.replace("index.html#all");
+                    }
+                }
+            });
+    console.log("Default case in login()");
+    window.location.replace("index.html#all");
+}
+
+function signup() {
+    var email_pattern = /polytechnique\.edu$/;
+    var alert_duration = 2000;
+
+    var username = $("input[name='username']").val();
+    var email = $("input[name='email']").val();
+    var password = $("input[name='password']").val();
+    var confirm_password = $("input[name='confirm_password']").val();
+    // Vérification des entrées
+    if (password != confirm_password) {
+        $("#alert-different-password").show(alert_duration);
+        return false;
+    }
+    if (password.length < 8){
+        $("#alert-password-length").show(alert_duration);
+        return false;
+    }
+    if (!email_pattern.exec(email)) {
+        $("#alert-email").show(alert_duration);
+        return false;
+    }
+
+    console.log("Signin' up...");
+    $.post(serverURL + 'signup.php', {username: username, email: email, password: password},
+            function (messageJson) {
+                console.log('Signup : réception JSON');
                 var messageAffiche = "";
                 for (var i = 0; i < messageJson.length; i++) {
                     if (messageJson[i].session_id) {
@@ -160,6 +221,14 @@ function route() {
         case '#login':
             $.get('js/template.html', function (templates) {
                 var template = $(templates).filter('#login-page-tpl').html();
+                page = Mustache.render(template, {});
+                $('#container').html(page);
+            }, 'html');
+            break;
+
+        case '#signup':
+            $.get('js/template.html', function (templates) {
+                var template = $(templates).filter('#signup-page-tpl').html();
                 page = Mustache.render(template, {});
                 $('#container').html(page);
             }, 'html');

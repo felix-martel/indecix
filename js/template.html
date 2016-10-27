@@ -62,7 +62,28 @@
         <input type="text" id="username" name="username" placeholder="username"/>
         <input type="password" id="password" name="password" placeholder="*******"/>
         <div id="form-buttons">
-            <button type="button" id="post-new-khote" onclick="console.log('Template.html'); login();">Login</button>
+            <button type="button" class="regular" id="post-new-khote" onclick="console.log('Template.html'); login();">Login</button>
         </div>
     </form>
+    <a class="switch_form" href="#signup">not registered ?</a>
+    <div class="alert" id="alert-account-unverified" hidden>
+        You must verify your account to log in; please check your mailbox
+    </div>
+</div>
+</div>
+
+<div id="signup-page-tpl">
+<div>
+    <form><!--<form method="post" action="login.php">-->
+        <h1>Sign Up</h1>
+        <input type="text" id="username" name="username" placeholder="username"/>
+        <input type="text" id="email" name="email" placeholder="your.email@polytechnique.edu">
+        <input type="password" id="password" name="password" placeholder="password"/>
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="confirm"/>
+        <div id="form-buttons">
+            <button type="button" class="regular" id="sign-up-button" onclick="signup();">Sign Up</button>
+        </div>
+    </form>
+    <a class="switch_form" href="#login">already registered ?</a>
+</div>
 </div>

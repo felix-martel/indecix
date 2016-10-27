@@ -4,8 +4,40 @@
 		"selected_items":
 		[
 			[
+				"righ",
+				"right_arrow"
+			],
+			[
+				"current",
+				"current_page"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"c",
+				"console"
+			],
+			[
 				"ses",
-				"session_id"
+				"sessionStorage"
+			],
+			[
+				"act",
+				"activateTitles"
+			],
+			[
+				"me",
+				"menu-item-a"
 			],
 			[
 				"session",
@@ -22,10 +54,6 @@
 			[
 				"sess",
 				"sessionStorage"
-			],
-			[
-				"margin",
-				"margin-bottom"
 			],
 			[
 				"word",
@@ -172,10 +200,6 @@
 				"parentElement"
 			],
 			[
-				"text",
-				"text-transform"
-			],
-			[
 				"standra",
 				"standard-msg"
 			],
@@ -239,23 +263,23 @@
 			"file": "add.php",
 			"settings":
 			{
-				"buffer_size": 1032,
+				"buffer_size": 1074,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "get.php",
+			"file": "action.php",
 			"settings":
 			{
-				"buffer_size": 1519,
+				"buffer_size": 3332,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "login.php",
+			"file": "/C/Users/felix/Documents/Dev/Modal/td1/www/react.php",
 			"settings":
 			{
-				"buffer_size": 1566,
+				"buffer_size": 2104,
 				"line_ending": "Windows"
 			}
 		},
@@ -268,10 +292,21 @@
 			}
 		},
 		{
-			"file": "index.html",
+			"contents": "<?php\nini_set('session.use_cookies', 0);\nini_set('session.use_only_cookies', 0);\nini_set('session.use_trans_sid', 1);\nsession_name('MODAL');\nsession_start();\n\nheader('Access-Control-Allow-Origin:*');\n\nrequire_once('database.php');\n\n\n\nfunction get_khotes($filter, $user_id) \n{\n	$queries = array(\n	'all' => 	'SELECT k.khote_id, k.khoteur, k.khote, k.up, r.uped, k.down, r.downed, k.fav, r.faved, k.flag, r.flaged \n				FROM khote AS k\n				LEFT JOIN relation  AS r \n				ON k.khote_id = r.khote_id \n				WHERE r.user_id = :user\n				ORDER BY k.date DESC \n				LIMIT 100',\n	'top' =>	'SELECT khote_id, khoteur, khote, up, down, fav, flag \n				FROM khote \n				WHERE up + down > 20 AND (down = 0 OR up/down > 2) \n				ORDER BY up/(down+1) DESC \n				LIMIT 100',\n	'fav' =>	'SELECT k.khote_id, k.khoteur, k.khote, k.up, k.down, k.fav, k.flag \n				FROM khote AS k\n				LEFT JOIN relation  AS r \n				ON k.khote_id = r.khote_id \n				WHERE r.user_id = :user AND r.faved  \n				ORDER BY k.date DESC \n				LIMIT 100',\n	);\n\n	$bdd = Database::connect();\n\n	$query = $bdd->prepare($queries[$filter]);\n	$query->execute(array('user' => $user_id));\n\n	$rows = array();\n	while($row = $query->fetch()) {\n		$rows[] = $row;\n	}\n\n	echo json_encode($rows);\n}\n\n/*\nfunction get_khotes($filter, $user_id) \n{\n	$bdd = Database::connect();\n\n	$query = $bdd->prepare('SELECT khote_id, khoteur, khote, up, down, fav FROM khote ORDER BY date DESC');\n	$query->execute(array('user' => $user_id));\n\n	$rows = array();\n	while($row = $query->fetch()) {\n		$rows[] = $row;\n	}\n\n	echo json_encode($rows);\n}\n*/\n\n\n// Ajout et redirection\nif (isset($_SESSION['user_id'])) {\n	$user = $_SESSION['user_id'];\n	if ((isset($_GET['filter']) && $_GET['filter'] == 'all') || !isset($_GET['filter'])){\n		get_khotes('all', $user);\n	}\n	elseif (isset($_GET['filter']) && $_GET['filter'] == 'top') {\n		get_khotes('top', $user);\n	}\n	elseif (isset($_GET['filter']) && $_GET['filter'] == 'fav') {\n		get_khotes('fav', $user);\n	}\n}\nelse {\n	echo json_encode('not_logged_in');\n}\n\n?>\n",
+			"file": "get.php",
+			"file_size": 1935,
+			"file_write_time": 131217911037012551,
 			"settings":
 			{
-				"buffer_size": 902,
+				"buffer_size": 1999,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "login.php",
+			"settings":
+			{
+				"buffer_size": 1731,
 				"line_ending": "Windows"
 			}
 		},
@@ -279,7 +314,15 @@
 			"file": "js/index.js",
 			"settings":
 			{
-				"buffer_size": 4827,
+				"buffer_size": 7145,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/indecix.css",
+			"settings":
+			{
+				"buffer_size": 3710,
 				"line_ending": "Windows"
 			}
 		},
@@ -287,7 +330,7 @@
 			"file": "js/template.html",
 			"settings":
 			{
-				"buffer_size": 2725,
+				"buffer_size": 2975,
 				"line_ending": "Windows"
 			}
 		},
@@ -349,6 +392,10 @@
 	},
 	"file_history":
 	[
+		"/C/Users/felix/Documents/Dev/Modal/td1/www/indecix/index.html",
+		"/C/Users/felix/Documents/Dev/Modal/td1/www/indecix/react.php",
+		"/C/Users/felix/Documents/Dev/Modal/td1/www/indecix/landing.html",
+		"/C/Users/felix/Documents/Dev/Modal/td1/www/indecix/database.php",
 		"/C/Users/felix/Documents/Dev/Verbotron/update.php",
 		"/C/Users/felix/Documents/Dev/Verbotron/mainpage.php",
 		"/C/Users/felix/Documents/Dev/Verbotron/phrase.php",
@@ -485,7 +532,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 8,
 			"sheets":
 			[
 				{
@@ -494,15 +541,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1032,
+						"buffer_size": 1074,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								157,
-								157
+								0,
+								0
 							]
 						],
 						"settings":
@@ -514,30 +561,31 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "get.php",
+					"file": "action.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1519,
+						"buffer_size": 3332,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								158,
-								158
+								728,
+								728
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -548,32 +596,31 @@
 				},
 				{
 					"buffer": 2,
-					"file": "login.php",
+					"file": "/C/Users/felix/Documents/Dev/Modal/td1/www/react.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1566,
+						"buffer_size": 2104,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1525,
-								1525
+								2100,
+								391
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 156.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -589,8 +636,8 @@
 						"selection":
 						[
 							[
-								58,
-								58
+								327,
+								327
 							]
 						],
 						"settings":
@@ -602,54 +649,83 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "index.html",
+					"file": "get.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 902,
+						"buffer_size": 1999,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								555,
-								555
+								996,
+								996
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "js/index.js",
+					"file": "login.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4827,
+						"buffer_size": 1731,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2014,
-								2014
+								1465,
+								1465
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 289.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "js/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7145,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1381,
+								1381
 							]
 						],
 						"settings":
@@ -659,27 +735,57 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 549.0,
+						"translation.y": 1649.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "js/template.html",
+					"buffer": 7,
+					"file": "css/indecix.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2725,
+						"buffer_size": 3710,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2113,
-								2122
+								870,
+								870
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 391.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "js/template.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2975,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								84,
+								84
 							]
 						],
 						"settings":
@@ -689,14 +795,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 411.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 9,
 					"file": "logout.php",
 					"semi_transient": false,
 					"settings":
@@ -720,7 +826,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 9,
 					"type": "text"
 				}
 			]
