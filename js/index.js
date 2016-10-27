@@ -60,9 +60,18 @@ function login() {
                         console.log('Login : session id =' + sessionStorage['session_id']);
                     }
                     if (messageJson[i].error) {
-                        messageAffiche = "Error : " + messageJson[i].error;
-                        alert(messageAffiche);
-                    } else if (messageJson[i].success) {
+                        var err = messageJson[i].error;
+                        switch (err) {
+                            case 'unverified_account':
+                                $("#alert-account-unverified").show(400);
+                                break;
+                            default:
+                                message = "Error : " + err;
+                                //alert(message);
+                                console.log(message);
+                        }
+                    } 
+                    else if (messageJson[i].success) {
                         console.log("Logging in successful");
                         window.location.replace("index.html#all");
                     }
