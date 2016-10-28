@@ -36,7 +36,7 @@ function setStatus($success, $text){
                 $statusMessage['detail'] = 'Username or password is empty';
                 break;
             case 'user_doesnt_exist':
-                $statusMessage['detail'] = 'This user/password does not match any existing user';
+                $statusMessage['detail'] = 'Invalid username or password';
                 break;
             case 'unverified_account':
                 $statusMessage['detail'] = 'Your account has not been verified. Please click on the activation link';

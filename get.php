@@ -18,13 +18,23 @@ function get_khotes($filter, $user_id)
 				FROM khote 
 				ORDER BY date DESC 
 				LIMIT 100',
-	'all' => 	'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
+	'old_2_all' => 	'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
 				k.up as up, r.uped as uped, k.down as down, r.downed as downed,
 				k.fav as fav, r.faved as faved, k.flag as flag, r.reported as flagged
 				FROM khote AS k
 				LEFT JOIN relation  AS r 
 				ON k.khote_id = r.khote_id 
 				WHERE r.user_id = :user
+				ORDER BY k.date DESC 
+				LIMIT 100',
+	'all' =>    'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
+				k.up as up, IFNULL(r.uped, 0) as uped, k.down as down, IFNULL(r.downed, 0) as downed,
+				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.reported, 0) as flagged
+				FROM khote AS k
+				LEFT JOIN 
+                (SELECT * FROM relation 
+                 WHERE user_id = :user) AS r
+                 ON k.khote_id = r.khote_id 
 				ORDER BY k.date DESC 
 				LIMIT 100',
 	'top' =>	'SELECT khote_id, khoteur, khote, up, down, fav, flag 
