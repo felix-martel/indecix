@@ -59,6 +59,7 @@
 <div>
     <form><!--<form method="post" action="login.php">-->
         <h1>Welcome</h1>
+        <div class="alert" id="header-message" hidden></div>
         <input type="text" id="username" name="username" placeholder="username"/>
         <input type="password" id="password" name="password" placeholder="*******"/>
         <div id="form-buttons">
@@ -75,12 +76,13 @@
 <div>
     <form><!--<form method="post" action="login.php">-->
         <h1>Sign Up</h1>
+        <div class="alert" id="header-message" hidden></div>
         <input type="text" id="username" name="username" placeholder="username"/>
          <input type="text" id="email" name="email" placeholder="email@polytechnique.edu"/>
         <input type="password" id="password" name="password" placeholder="password" />
         <input type="password" id="confirm_password" name="confirm_password" placeholder="confirm" />
         <div id="form-buttons">
-            <button type="button" class="regular" id="post-new-khote" onclick="login();">Sign Up</button>
+            <button type="button" class="regular" id="post-new-khote" onclick="signup();">Sign Up</button>
         </div>
         <div class="alert" id="alert-message" hidden>
         </div>

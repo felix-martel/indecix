@@ -12,6 +12,39 @@ header('Expires: Mon, 01 Jul 1980 05:00:00 GMT');
 header('Content-type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin:*');
 
+$msgJson = array();
+$statusMessage = array('status' => 'error', 'code' => 'default_error', 'detail' => 'Unknown error');
+function setStatus($success, $text){
+    global $statusMessage;
+    if ($success){
+        $statusMessage['status'] = 'success';
+        $statusMessage['code'] = '';
+    }
+    else {
+        $statusMessage['status'] = 'error';
+        $statusMessage['code'] = $text;
+        switch($text) {
+            case 'empty_field':
+                $statusMessage['detail'] = 'Username or password is empty';
+                break;
+            case 'user_doesnt_exist':
+                $statusMessage['detail'] = 'This user/password does not match any existing user';
+                break;
+            case 'unverified_account':
+                $statusMessage['detail'] = 'Your account has not been verified. Please click on the activation link';
+                break;
+            case 'username_already_exists':
+                $statusMessage['detail'] = 'This username already exists. Please choose another one';
+            case 'email_already_exists':
+                $statusMessage['detail'] = 'This e-mail address is already associated with an account. Please use another one';
+            default:
+                $statusMessage['detail'] = 'Unknown error';
+                break;
+
+        }
+    }
+    
+}
 // tableau pour la gestion des erreurs
 $msgJson = array();
 $serverURL = "";
@@ -26,16 +59,19 @@ try {
     assert(strlen($password) > 5);
 }
 catch (Exception $e) {
-    $msg = array('error' => 'unset_field');
+    setStatus(false, 'empty_field');
+    //$msg = array('error' => 'empty_field');
 }
 catch(AssertException $e){
-    $msg = array('error' => 'empty_field');
+    setStatus(false, 'empty_field');
+    //$msg = array('error' => 'empty_field');
 }
 
 // Vérification des champs input envoyés par POST
 if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])) {
     require('database.php');
     $dbh = Database::connect();
+
     // Unicité du pseudo utilisateur
     $query = 'SELECT user_id FROM user WHERE name=:username';
     $sth = $dbh->prepare($query);
@@ -43,8 +79,9 @@ if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) 
         'username' => $_POST['username'],
     ));
     if ($sth->rowCount() > 0) {
-        $msg = array('error' => 'username_already_exists');
-        array_push($msgJson, $msg);
+        setStatus(false, 'username_already_exists');
+        //$msg = array('error' => 'username_already_exists');
+        //array_push($msgJson, $msg);
     }
     // Unicité de l'adresse email
     $query = 'SELECT user_id FROM user WHERE mail=:email';
@@ -53,23 +90,25 @@ if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) 
         'email' => $email,
     ));
     if ($sth->rowCount() > 0) {
-        $msg = array('error' => 'email_already_exists');
-        array_push($msgJson, $msg);
+        setStatus(false, 'email_already_exists');
+        //$msg = array('error' => 'email_already_exists');
+        //array_push($msgJson, $msg);
     }
     // Insertion de l'utilisateur
     $verif_key = md5(microtime(TRUE)*100000);
-    $sth = $dbh->prepare("INSERT INTO user (name, mail, password, authkey) VALUES (:username, :email, :password, :key)"); 
+    $sth = $dbh->prepare("INSERT INTO user (name, mail, password, authkey) VALUES (:username, :email, SHA1(:password), :key)"); 
     $sth->execute(array(
         'username' => $username,
         'email' => $email, 
         'password' => $password,
         'key' => $verif_key
     ));
+    setStatus(true, '');
     // Envoi du mail de confirmation
     $recipient = $email;
     $title = "Activate your KHOTE account";
     $header = "From: activation@khote.com";
-    $activation_link = $serverURL."auth.php?user=".urlencode($username).'&key='.urlencode($key);
+    $activation_link = $serverURL."auth.php?user=".urlencode($username).'&key='.urlencode($verif_key);
     $login_link = $serverURL."index.html#login";
 
     $message = 'Hi,
@@ -84,14 +123,15 @@ if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) 
      ---
 
      Please do not reply, I\'m very busy right now';
-     mail($recipient, $title, $message, $header);
+     // Serveur mail à configurer...
+     //mail($recipient, $title, $message, $header);
 
 } else {
     $msg = array('error' => 'Login or password is not set');
 }
 
 // on affiche l'erreur ou le succès
-array_push($msgJson, $msg);
+array_push($msgJson, $statusMessage);
 echo json_encode($msgJson);
 //header('Location: index.html#all');
 ?>

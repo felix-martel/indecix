@@ -49,6 +49,29 @@ $('#container').bind('swiperight', goRight);
 serverURL = '';
 //serverURL = 'http://perone.polytechnique.fr/~vivien.dahan/';
 
+var themes = {
+    'purple': '#673AB7',
+    'red' : '#820013',
+    'blue' : '#2D1D82',
+    'blue_green' : '#15825A',
+    'green' : '#208214',
+    'taupe' : '#705E44',
+    'burgundy' : '#702D34',
+    'alt_purple' : '#4C1070',
+    'yellow' : '#D6D03A',
+    'default' : '#673AB7'
+};
+
+function changeColor(color){
+    $('body').css('background-color', color);
+    $('.main-menu').css('background-color', color);
+}
+function setTheme(name) {
+    changeColor(themes[name]);
+}
+
+
+
 function login() {
     var username = $("input[name='username']").val();
     var password = $("input[name='password']").val();
@@ -76,6 +99,68 @@ function login() {
                             var error = messageJson[i];
                             $('#alert-message').html(error.detail);
                             $('#alert-message').show(400);
+                            // Réinitialisation du formulaire
+                            $("input[name='username']").val("");
+                            $("input[name='password']").val("");
+                        }
+                    } 
+                }
+            });
+    //window.location.replace("index.html#all");
+}
+
+function signup() {
+    // Constantes
+    var EMAIL_PATTERN = /polytechnique\.edu$/;
+    var ALERT_DURATION = 400;
+    var ALERT_MESSAGE = $("#alert-message");
+    // Récupération des entrées
+    var username = $("input[name='username']").val();
+    var email = $("input[name='email']").val();
+    var password = $("input[name='password']").val();
+    var confirm_password = $("input[name='confirm_password']").val();
+    // -- Vérification des entrées --
+    // Les deux mots de passe coïncident
+    if (password != confirm_password){
+        ALERT_MESSAGE.html("The two passwords are different");
+        ALERT_MESSAGE.show(ALERT_DURATION);
+        return false;
+    }
+    // Le mot de passe fait au moins 5 caractères
+    if (password.length < 6){
+        ALERT_MESSAGE.html("Your password must be at least six characters long");
+        ALERT_MESSAGE.show(ALERT_DURATION);
+        return false;
+    }
+    // Le nom de domaine de l'adresse mail est x.edu
+    if (!EMAIL_PATTERN.test(email)) {
+        ALERT_MESSAGE.html("You must register with your polytechnique.edu email address");
+        ALERT_MESSAGE.show(ALERT_DURATION);
+        return false;
+    }
+
+    // Création d'un nouvel user
+    console.log("Signing up...");
+    $.post(serverURL + 'signup.php', {username: username, email: email, password: password},
+            function (messageJson) {
+                console.log('Signup : réception JSON');
+                for (var i = 0; i < messageJson.length; i++) {
+                    if (messageJson[i].status) {
+                        if (messageJson[i].status == 'success') {
+                            // -- Succès --
+
+                            console.log("Logging in successful");
+                            window.location.replace("index.html#login");
+                            $("#header-message").html("Your account have been successfully created ! We've sent you an activation link by email. Please click on it to access the app");
+                            $("#header-message").show(400);
+                        }
+                        else {
+                            // -- Echec --
+
+                            // Affichage d'un message d'avertissement
+                            var error = messageJson[i];
+                            ALERT_MESSAGE.html(error.detail);
+                            ALERT_MESSAGE.show(ALERT_DURATION);
                             // Réinitialisation du formulaire
                             $("input[name='username']").val("");
                             $("input[name='password']").val("");
