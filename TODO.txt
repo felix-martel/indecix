@@ -2,7 +2,9 @@ TODO :
 
 
 >>> À déboguer :
-- Dans le menu <nav>, le lien vers la page active doit porter la classe .active qui permet de le mettre en exergue par rapport aux autres liens. Or pour l'instant, le comportement est un peu bizarre (je crois que le double-clic fonctionne pour l'activation)
+- Dans index.js:154, après l'inscription, on est redirigé vers #login; il manque le message de succès ('#header-message').show(400)
+- 
+
 
 >>> Ce qu'on peut faire seuls :
 - Gérer le système de vote et de fav (:fichier react.php)
