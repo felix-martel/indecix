@@ -19,6 +19,7 @@ function setCurrentPage(n) {
         $(active_element).addClass("active");
     }
 }
+
 function goLeft() {
     console.log("Going left...");
     setCurrentPage((current_page + 2) % nb_pages);
@@ -30,6 +31,7 @@ function goRight() {
     setCurrentPage((current_page + 1) % nb_pages);
     window.location = "index.html" + page_href[current_page];
 }
+// Navigation au clavier
 $('body').keydown(function (event) {
     var right_arrow = 39;
     var left_arrow = 37;
@@ -40,6 +42,7 @@ $('body').keydown(function (event) {
         goLeft();
     }
 });
+// Navigation tactile
 $('#container').bind('swipeleft', goLeft);
 $('#container').bind('swiperight', goRight);
 
@@ -53,18 +56,22 @@ function login() {
     $.post(serverURL + 'login.php', {username: username, password: password},
             function (messageJson) {
                 console.log('Login : réception JSON');
-                var messageAffiche = "";
                 for (var i = 0; i < messageJson.length; i++) {
                     if (messageJson[i].session_id) {
+                        // Enregistrement de l'id de session dans le sessionStorage
                         sessionStorage['session_id'] = messageJson[i].session_id;
                         console.log('Login : session id =' + sessionStorage['session_id']);
                     }
                     if (messageJson[i].status) {
                         if (messageJson[i].status == 'success') {
+                            // -- Succès --
+
                             console.log("Logging in successful");
                             window.location.replace("index.html#all");
                         }
                         else {
+                            // -- Echec --
+
                             // Affichage d'un message d'avertissement
                             var error = messageJson[i];
                             $('#alert-message').html(error.detail);
@@ -74,10 +81,6 @@ function login() {
                             $("input[name='password']").val("");
                         }
                     } 
-                    /*else if (messageJson[i].success) {
-                        console.log("Logging in successful");
-                        window.location.replace("index.html#all");
-                    }*/
                 }
             });
     //window.location.replace("index.html#all");
@@ -92,10 +95,10 @@ function add_khote() {
             serverURL + "add.php",
             {MODAL: sessionStorage['session_id'], khoteur: new_khoteur, khote: new_khote},
             function (data) {
+                console.log("New khote sent");
+                window.location.replace("index.html#all");
             }
     );
-    console.log("New khote sent");
-    window.location.replace("index.html#all");
 }
 
 function action(action, id) {
@@ -103,14 +106,28 @@ function action(action, id) {
             serverURL + "action.php",
             {MODAL: sessionStorage['session_id'], action: action, id: id},
             function (data) {
-                window.location.reload();
+                //window.location.reload();
             }
     );
-    //alert("Action effectuée !");  //Le alert a l'utilité d'éviter d'actualiser la page avant la fin du POST, sinon celui-ci échoue !
-    //window.location.reload();
+    var parent = '#khote-'+id+' .'+action+'-number';
+    var child = '#khote-'+id+' .'+action+'-number span';
+    console.log(action);
+    var number = parseInt($(child).html());
+    if ($(parent).hasClass('is-set-1')) {
+        // L'utilisateur a déjà actionné ce bouton, le clic annule donc cette action
+        $(child).html(number - 1);
+        $(parent).removeClass('is-set-1');
+        $(parent).addClass('is-set-0');
+    }
+    else {
+        $(child).html(number + 1);
+        $(parent).addClass('is-set-1');
+        $(parent).removeClass('is-set-0');
+
+    }
 }
 
-$(window).on('hashchange', route);
+
 function route() {
     var page, hash = window.location.hash;
     //console.log(hash);
@@ -128,7 +145,6 @@ function route() {
                             setCurrentPage(0);
                         });
             }, 'html');
-            setCurrentPage(0);
             break;
 
         case '#top':
@@ -172,6 +188,14 @@ function route() {
         case '#login':
             $.get('js/template.html', function (templates) {
                 var template = $(templates).filter('#login-page-tpl').html();
+                page = Mustache.render(template, {});
+                $('#container').html(page);
+            }, 'html');
+            break;
+
+        case '#signup':
+            $.get('js/template.html', function (templates) {
+                var template = $(templates).filter('#signup-page-tpl').html();
                 page = Mustache.render(template, {});
                 $('#container').html(page);
             }, 'html');

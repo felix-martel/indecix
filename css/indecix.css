@@ -96,17 +96,28 @@ h1 {
   font-size: 1.3em;
   margin-left: 25px;
 }
-#post-new-khote {
+#post-new-khote, button.regular {
   background-color: transparent;
   color: white;
   border: 2px solid white;/*blanc*/
   border-radius: 0.2em;
   outline: none;
   padding: 0.2em 0.5em;
+  font-size: 1.3em;
 }
 #form-buttons {
   margin-top: 28px;
   white-space: nowrap;
+}
+
+.switch_form, .switch_form:active, .switch_form:visited {
+  display: block;
+  color: white;
+  margin-top: 20px;
+  text-decoration: none;
+}
+.switch_form:hover {
+  opacity: 0.8;
 }
 
 input[type="submit"]:hover {
@@ -198,13 +209,16 @@ textarea {
   margin: 0;
 }
 
-.khote-button {
+.khote-button, .khote-button:focus {
   background-color: transparent;
   border: none;
   opacity: 0.5;
   font-size: 0.85em;
 }
 
+.khote-button.is-set-1 {
+  opacity: 1;
+}
 .khote-button:hover {
   opacity: 1;
   outline: none;

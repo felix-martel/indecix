@@ -11,17 +11,17 @@
                     <p class="khote-text">
                         {{khoteur}}<span> khote </span>{{khote}}
                     </p>
-                    <button class="khote-button up-number" onclick="action('up', {{khote_id}});">
-                        {{up}}<i class="glyphicon glyphicon-arrow-up"></i>
+                    <button class="khote-button up-number is-set-{{uped}}" onclick="action('up', {{khote_id}});">
+                        <span>{{up}}</span><i class="glyphicon glyphicon-arrow-up"></i>
                     </button>
-                    <button class="khote-button  down-number" onclick="action('down', {{khote_id}});">
-                        {{down}}<i class="glyphicon glyphicon-arrow-down"></i>
+                    <button class="khote-button  down-number is-set-{{downed}}" onclick="action('down', {{khote_id}});">
+                        <span>{{down}}</span><i class="glyphicon glyphicon-arrow-down"></i>
                     </button>
-                    <button class="khote-button  fav-number"  onclick="action('fav', {{khote_id}});">
-                        {{fav}}<i class="glyphicon glyphicon-heart"></i>
+                    <button class="khote-button  fav-number is-set-{{faved}}"  onclick="action('fav', {{khote_id}});">
+                        <span>{{fav}}</span><i class="glyphicon glyphicon-heart"></i>
                     </button>
-                    <button class="khote-button  flag-number"  onclick="action('flag', {{khote_id}});">
-                        {{flag}}<i class="glyphicon glyphicon-flag"></i>
+                    <button class="khote-button  flag-number is-set-{{flagged}}"  onclick="action('flag', {{khote_id}});">
+                        <span>{{flag}}</span><i class="glyphicon glyphicon-flag"></i>
                     </button>
                 </li>
             {{/.}}
@@ -62,10 +62,29 @@
         <input type="text" id="username" name="username" placeholder="username"/>
         <input type="password" id="password" name="password" placeholder="*******"/>
         <div id="form-buttons">
-            <button type="button" id="post-new-khote" onclick="console.log('Template.html'); login();">Login</button>
+            <button type="button" class="regular" id="post-new-khote" onclick="console.log('Template.html'); login();">Login</button>
         </div>
         <div class="alert" id="alert-message" hidden>
-            Your account has not been verified. Please click on the activation link
         </div>
     </form>
+    <a class="switch_form" href="#signup">not registered ?</a>
+</div>
+</div>
+
+<div id="signup-page-tpl">
+<div>
+    <form><!--<form method="post" action="login.php">-->
+        <h1>Sign Up</h1>
+        <input type="text" id="username" name="username" placeholder="username"/>
+         <input type="text" id="email" name="email" placeholder="email@polytechnique.edu"/>
+        <input type="password" id="password" name="password" placeholder="password" />
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="confirm" />
+        <div id="form-buttons">
+            <button type="button" class="regular" id="post-new-khote" onclick="login();">Sign Up</button>
+        </div>
+        <div class="alert" id="alert-message" hidden>
+        </div>
+    </form>
+    <a class="switch_form" href="#login">already registered ?</a>
+</div>
 </div>
