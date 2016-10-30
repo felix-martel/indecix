@@ -154,7 +154,7 @@ textarea {
   position: relative;
 }
 .hidden-bar {
-  border-bottom: 2px solid rgba(255, 255, 255s, 0.5);/*blanc*/
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);/*blanc*/
   color: transparent;
   width: 100%;
   font-size: 1.6em;
