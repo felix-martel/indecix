@@ -9,6 +9,27 @@ body {
   color: white;/*blanc*/
 }
 
+a, a:active, a:visited {
+  display: block;
+  color: white;
+  margin-top: 20px;
+  text-decoration: none;
+}
+a:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+
+}
+
 #logo {
   margin-top: 33vh;
   width: 100%;
@@ -22,6 +43,7 @@ body {
               5px 5px 0 black,
               6px 6px 0 black;
 }
+
 .main-menu {
   position: fixed;
   top: 0;
@@ -41,12 +63,6 @@ body {
   list-style: none;
 }
 
-/*
-.main-menu a.active {
-  opacity: 1;
-  transition: opacity 0.25s;
-}*/
-
 .menu-item.active  a, .main-menu a.active {
   opacity: 1;
   transition: opacity 0.25s;
@@ -63,17 +79,9 @@ body {
   line-height: 50px;
   text-decoration: none;
   transition: opacity 0.25s;
+  margin-top: 0;
 }
 
-h1 {
-  text-transform: uppercase;
-  font-size: 2em;
-  font-weight: bold;
-  padding: 0;
-  margin: 0;
-  margin-bottom: 20px;
-
-}
 #post-new-khote, .khote-separator {
   font-size: 1.3em;
 }
@@ -146,7 +154,7 @@ textarea {
   position: relative;
 }
 .hidden-bar {
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5);/*blanc*/
+  border-bottom: 2px solid rgba(255, 255, 255s, 0.5);/*blanc*/
   color: transparent;
   width: 100%;
   font-size: 1.6em;
@@ -181,6 +189,8 @@ textarea {
   border-color: gray;
 }
 
+/* -- Bouton d'ajout de khote -- */
+
 #add-khote {
   text-decoration: none;
   display: block;
@@ -205,9 +215,13 @@ textarea {
   text-decoration: none;
 }
 
+/* -- Khotes proprement dite -- */
+
 .khote-text {
   margin: 0;
 }
+
+/* -- Boutons de vote +, -, fav, report -- */
 
 .khote-button, .khote-button:focus {
   background-color: transparent;
@@ -215,7 +229,6 @@ textarea {
   opacity: 0.5;
   font-size: 0.85em;
 }
-
 .khote-button.is-set-1 {
   opacity: 1;
 }
@@ -224,20 +237,5 @@ textarea {
   outline: none;
 }
 
-.up-number, .down-number, .fav-number, .flag-number {
-}
-/*
-.up-number {
-  border-radius: 0 0 0 2px;
-  color: limegreen;
-}
-
-.down-number {
-  color: orangered;
-}
-.fav-number {
-  border-radius: 0 0 2px 0;
-  
-}*/
 
 
