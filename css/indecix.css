@@ -209,6 +209,12 @@ textarea {
   margin-top: 50px;
 }
 
+#search-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 5em;
+}
+
 .khote {
   width: 100%;
   font-size: 1.3em;
