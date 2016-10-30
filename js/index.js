@@ -51,8 +51,8 @@ $('body').keydown(function (event) {
 $('#container').bind('swipeleft', goLeft);
 $('#container').bind('swiperight', goRight);
 
-serverURL = '';
-//serverURL = 'http://perone.polytechnique.fr/~vivien.dahan/';
+//serverURL = '';
+serverURL = 'http://s621682634.onlinehome.fr/';
 
 
 /////////////////////////////
