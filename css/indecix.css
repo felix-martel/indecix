@@ -58,6 +58,15 @@ h1 {
   z-index: 1;
 }
 
+.account-details {
+  font-size: 1.3em;
+}
+.account-details span {
+  display: inline-block;
+  width: 2.3em;
+  opacity: 0.5;
+}
+
 .search-bar {
   position: fixed;
   top: 0;
@@ -65,17 +74,18 @@ h1 {
   z-index: 3;
   padding: 1em;
   background-color: #673AB7;
-
-
 }
 
-.search-button {
-  color: white;
-  opacity: 0.5;
+.top-buttons {
+
   position: fixed;
   top: 0.7em;
   right: 1em;
   z-index: 2;
+}
+.search-button {
+  color: white;
+  opacity: 0.5;
   background-color: transparent;
   border: none;
   outline: none;

@@ -55,7 +55,7 @@ if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) 
     require('database.php');
     $dbh = Database::connect();
 
-    $query = 'SELECT user_id, name, password, verified FROM user WHERE name=:username AND password=SHA1(:pwd)';
+    $query = 'SELECT user_id, mail, name, password, verified FROM user WHERE name=:username AND password=SHA1(:pwd)';
     $sth = $dbh->prepare($query);
     $sth->execute(array(
         'username' => $_POST['username'],
@@ -71,6 +71,12 @@ if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) 
             //success
             // on envoie le numéro de session au client (évite d'avoir une session en cas d'echec de connexion)
             $msg = array('session_id' => session_id());
+            array_push($msgJson, $msg);
+            // on envoie un JSON contenant les détails du compte
+            $msg = array(
+                'username' => $row['name'],
+                'email' => $row['mail'],
+                );
             array_push($msgJson, $msg);
             // on stocke un message de succès dans un tableau
             $msg = array('success' => 'Success');

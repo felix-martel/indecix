@@ -97,6 +97,10 @@ function login() {
                         sessionStorage['session_id'] = messageJson[i].session_id;
                         console.log('Login : session id =' + sessionStorage['session_id']);
                     }
+                    if (messageJson[i].email && messageJson[i].username) {
+                        sessionStorage['username'] =  messageJson[i].username;
+                        sessionStorage['email'] = messageJson[i].email;
+                    }
                     if (messageJson[i].status) {
                         if (messageJson[i].status == 'success') {
                             // -- Succès --
@@ -180,6 +184,18 @@ function signup() {
                 }
             });
 }
+
+function changePassword(){
+    // Pas encore implémenté
+    $(".changing-password").show();
+    $(".settings-buttons").hide();
+}
+function cancelPasswordChange(){
+    $(".changing-password input").val("");
+    $(".changing-password").hide();
+    $(".settings-buttons").show();
+}
+
 
 /////////////////////////////
 // RECHERCHE ----------------
@@ -344,6 +360,14 @@ function route() {
             $.get('js/template.html', function (templates) {
                 var template = $(templates).filter('#signup-page-tpl').html();
                 page = Mustache.render(template, {});
+                $('#container').html(page);
+            }, 'html');
+            break;
+
+        case '#settings':
+            $.get('js/template.html', function (templates) {
+                var template = $(templates).filter('#settings-tpl').html();
+                page = Mustache.render(template, {'username': sessionStorage['username'], 'email' : sessionStorage['email']});
                 $('#container').html(page);
             }, 'html');
             break;
