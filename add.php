@@ -37,7 +37,4 @@ function add_khote($user_id, $khoteur, $khote)
 
 // Ajout et redirection
 add_khote($_SESSION['user_id'], $_POST['khoteur'], $_POST['khote']);
-//header('Location: index.html#all');
-
-
 ?>

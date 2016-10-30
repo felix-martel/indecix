@@ -11,22 +11,10 @@ require_once('database.php');
 
 
 
-function get_khotes($filter, $user_id) 
+function get_khotes($filter, $user_id, $search='') 
 {
 	$queries = array(
-	'old_all' => 	'SELECT khote_id, khoteur, khote, up, down, fav, flag 
-				FROM khote 
-				ORDER BY date DESC 
-				LIMIT 100',
-	'old_2_all' => 	'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
-				k.up as up, r.uped as uped, k.down as down, r.downed as downed,
-				k.fav as fav, r.faved as faved, k.flag as flag, r.reported as flagged
-				FROM khote AS k
-				LEFT JOIN relation  AS r 
-				ON k.khote_id = r.khote_id 
-				WHERE r.user_id = :user
-				ORDER BY k.date DESC 
-				LIMIT 100',
+	// Récupération de toutes les khotes
 	'all' =>    'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
 				k.up as up, IFNULL(r.uped, 0) as uped, k.down as down, IFNULL(r.downed, 0) as downed,
 				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.reported, 0) as flagged
@@ -37,24 +25,70 @@ function get_khotes($filter, $user_id)
                  ON k.khote_id = r.khote_id 
 				ORDER BY k.date DESC 
 				LIMIT 100',
-	'top' =>	'SELECT khote_id, khoteur, khote, up, down, fav, flag 
-				FROM khote 
+	// Récupération des meilleures khotes
+	'top' =>	'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
+				k.up as up, IFNULL(r.uped, 0) as uped, k.down as down, IFNULL(r.downed, 0) as downed,
+				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.reported, 0) as flagged
+				FROM khote AS k
+				LEFT JOIN 
+                (SELECT * FROM relation 
+                 WHERE user_id = :user) AS r
+                 ON k.khote_id = r.khote_id
 				WHERE up + down > 20 AND (down = 0 OR up/down > 2) 
 				ORDER BY up/(down+1) DESC 
 				LIMIT 100',
-	'fav' =>	'SELECT k.khote_id, k.khoteur, k.khote, k.up, k.down, k.fav, k.flag 
+	// Récupération des khotes favorites de l'utilisateur
+	'fav' =>	'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
+				k.up as up, IFNULL(r.uped, 0) as uped, k.down as down, IFNULL(r.downed, 0) as downed,
+				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.reported, 0) as flagged
 				FROM khote AS k
-				LEFT JOIN relation  AS r 
-				ON k.khote_id = r.khote_id 
+				LEFT JOIN 
+                (SELECT * FROM relation 
+                 WHERE user_id = :user) AS r
+                 ON k.khote_id = r.khote_id	
 				WHERE r.user_id = :user AND r.faved  
+				ORDER BY k.date DESC 
+				LIMIT 100',
+	'search' => 'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
+				k.up as up, IFNULL(r.uped, 0) as uped, k.down as down, IFNULL(r.downed, 0) as downed,
+				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.reported, 0) as flagged
+				FROM khote AS k
+				LEFT JOIN 
+                (SELECT * FROM relation 
+                 WHERE user_id = :user) AS r
+                 ON k.khote_id = r.khote_id
+                 WHERE CONCAT(k.khoteur, " khote ", k.khote) LIKE :search
 				ORDER BY k.date DESC 
 				LIMIT 100',
 	);
 
 	$bdd = Database::connect();
-
+	/*echo '<h1>'.$search;
+	echo ($search != '').'</h1>';
+	if ($search != ''){
+		$arguments = array(
+			'user' => $user_id,
+			'search' => $search
+		);
+	}
+	else {
+		$arguments = array(
+			'user' => $user_id
+		);
+	}*/
 	$query = $bdd->prepare($queries[$filter]);
-	$query->execute(array('user' => $user_id));
+	if ($search != ''){
+		$query->execute(array(
+			'user' => $user_id,
+			'search' => '%'.$search.'%'
+		));
+	}
+	else {
+		$query->execute(array(
+			'user' => $user_id
+		));
+	}
+	
 
 	$rows = array();
 	while($row = $query->fetch()) {
@@ -63,29 +97,15 @@ function get_khotes($filter, $user_id)
 
 	echo json_encode($rows);
 }
-
-/*
-function get_khotes($filter, $user_id) 
-{
-	$bdd = Database::connect();
-
-	$query = $bdd->prepare('SELECT khote_id, khoteur, khote, up, down, fav FROM khote ORDER BY date DESC');
-	$query->execute(array('user' => $user_id));
-
-	$rows = array();
-	while($row = $query->fetch()) {
-		$rows[] = $row;
-	}
-
-	echo json_encode($rows);
-}
-*/
 
 
 // Ajout et redirection
 if (isset($_SESSION['user_id'])) {
 	$user = $_SESSION['user_id'];
 	if ((isset($_GET['filter']) && $_GET['filter'] == 'all') || !isset($_GET['filter'])){
+		// On affiche toutes les khotes :
+		//   soit si la requête spécifie filter=all
+		//	 soit si aucun filter n'est spécifié
 		get_khotes('all', $user);
 	}
 	elseif (isset($_GET['filter']) && $_GET['filter'] == 'top') {
@@ -93,6 +113,9 @@ if (isset($_SESSION['user_id'])) {
 	}
 	elseif (isset($_GET['filter']) && $_GET['filter'] == 'fav') {
 		get_khotes('fav', $user);
+	}
+	elseif(isset($_GET['filter']) && $_GET['filter'] == 'search' && isset($_GET['q']) && $_GET['q'] != '') {
+		get_khotes('search', $user, $_GET['q']);
 	}
 }
 else {

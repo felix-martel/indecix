@@ -171,7 +171,36 @@ function signup() {
     //window.location.replace("index.html#all");
 }
 
-function add_khote() {
+function search() {
+    var query = $('#search').val();
+    $.get('js/template.html', function (templates) {
+        var template = $(templates).filter('#search-tpl').html();
+        $.getJSON(serverURL + "get.php?MODAL=" + sessionStorage['session_id'] + "&filter=search&q=" + query,
+        function (data) {
+            if (data === "not_logged_in") {
+                window.location.replace("index.html#login");
+            }
+            page = Mustache.render(template, data);
+            $('#container').html(page);
+            console.log(data.length);
+            if (data.length == 0){
+                console.log('displaying alert message');
+                $('#alert-message').html("no result bro :(");
+                $('#alert-message').show();
+            }
+            else {
+                $('#search-list').show();
+            }
+        });
+    }, 'html');
+}
+function triggerSearch(event) {
+    if (event.which == 13){ // On presse 'Entrée'
+        search();
+    }
+}
+
+function addKhote() {
     var new_khoteur = $("input[name='khoteur']").val();
     var new_khote = $("textarea[name='khote']").val();
     console.log("New khoteur : " + new_khoteur);
@@ -259,6 +288,14 @@ function route() {
                             $('#container').html(page);
                             setCurrentPage(2);
                         });
+            }, 'html');
+            break;
+
+        case '#search':
+            $.get('js/template.html', function (templates) {
+                var template = $(templates).filter('#search-tpl').html();
+                page = Mustache.render(template, {});
+                $('#container').html(page);
             }, 'html');
             break;
 
