@@ -3,7 +3,12 @@ window.addEventListener('load', function () {
     new FastClick(document.body);
 }, false);
 
-// --- Navigation tactile par swipe gauche et droit --- \\
+
+
+/////////////////////////////
+// NAVIGATION TACTILE -------
+/////////////////////////////
+
 
 var current_page = 0; // 1 : ALL, 2 : TOP, 3 : FAV
 var page_href = ['#all', '#top', '#fav'];
@@ -49,6 +54,12 @@ $('#container').bind('swiperight', goRight);
 //serverURL = '';
 serverURL = 'http://s621682634.onlinehome.fr/';
 
+
+/////////////////////////////
+// GESTION DES THEMES -------
+/////////////////////////////
+
+
 var themes = {
     'purple': '#673AB7',
     'red' : '#820013',
@@ -61,7 +72,6 @@ var themes = {
     'yellow' : '#D6D03A',
     'default' : '#673AB7'
 };
-
 function changeColor(color){
     $('body').css('background-color', color);
     $('.main-menu').css('background-color', color);
@@ -70,7 +80,9 @@ function setTheme(name) {
     changeColor(themes[name]);
 }
 
-
+/////////////////////////////
+// GESTION DES UTILISATEURS--
+/////////////////////////////
 
 function login() {
     var username = $("input[name='username']").val();
@@ -120,25 +132,24 @@ function signup() {
     var password = $("input[name='password']").val();
     var confirm_password = $("input[name='confirm_password']").val();
     // -- Vérification des entrées --
-    // Les deux mots de passe coïncident
+        // Les deux mots de passe coïncident
     if (password != confirm_password){
         ALERT_MESSAGE.html("The two passwords are different");
         ALERT_MESSAGE.show(ALERT_DURATION);
         return false;
     }
-    // Le mot de passe fait au moins 5 caractères
+        // Le mot de passe fait au moins 5 caractères
     if (password.length < 6){
         ALERT_MESSAGE.html("Your password must be at least six characters long");
         ALERT_MESSAGE.show(ALERT_DURATION);
         return false;
     }
-    // Le nom de domaine de l'adresse mail est x.edu
+        // Le nom de domaine de l'adresse mail est x.edu
     if (!EMAIL_PATTERN.test(email)) {
         ALERT_MESSAGE.html("You must register with your polytechnique.edu email address");
         ALERT_MESSAGE.show(ALERT_DURATION);
         return false;
     }
-
     // Création d'un nouvel user
     console.log("Signing up...");
     $.post(serverURL + 'signup.php', {username: username, email: email, password: password},
@@ -168,8 +179,11 @@ function signup() {
                     } 
                 }
             });
-    //window.location.replace("index.html#all");
 }
+
+/////////////////////////////
+// RECHERCHE ----------------
+/////////////////////////////
 
 function search() {
     var query = $('#search').val();
@@ -199,6 +213,12 @@ function triggerSearch(event) {
         search();
     }
 }
+
+
+/////////////////////////////
+// GESTION DES KHÔTES -------
+/////////////////////////////
+
 
 function addKhote() {
     var new_khoteur = $("input[name='khoteur']").val();
@@ -240,6 +260,11 @@ function action(action, id) {
 
     }
 }
+
+
+/////////////////////////////
+// ROUTING ------------------
+/////////////////////////////
 
 
 function route() {
