@@ -58,6 +58,37 @@ h1 {
   z-index: 1;
 }
 
+.search-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  padding: 1em;
+  background-color: #673AB7;
+
+
+}
+
+.search-button {
+  color: white;
+  opacity: 0.5;
+  position: fixed;
+  top: 0.7em;
+  right: 1em;
+  z-index: 2;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.search-button.active {
+  opacity: 1;
+  transition: opacity 0.25s;
+}
+.search-button .glyphicon {
+  font-size: 1.3em;
+}
+
+
 .main-menu li {
   display: inline-block;
   list-style: none;

@@ -1,4 +1,5 @@
 <div id="main-tpl">
+    <button class="search-button" onclick="window.location.replace('index.html#search');"><i class="glyphicon glyphicon-search"></i></button>
     <ul class="main-menu">
         <li id="all" class="menu-item"><a class="menu-item-a" href="#all" onclick="">All</a></li>
         <li id="top" class="menu-item"><a class="menu-item-a" href="#top" onclick="">Top</a></li>
@@ -89,4 +90,41 @@
     </form>
     <a class="switch_form" href="#login">already registered ?</a>
 </div>
+</div>
+
+<div id="settings-tpl">
+<div>
+    <h1>Settings</h1>
+    
+
+</div>
+</div>
+
+<div id="search-tpl">
+    <div class="search-bar"><input autofocus type="text" onkeydown="triggerSearch(event);" placeholder="search" name="search" id="search"/></div>
+    <button class="search-button active" onclick="search();"><i class="glyphicon glyphicon-search"></i></button>
+    
+    <div class="search-result" hidden>
+        <ul id="khote-list">
+            {{#.}}
+                <li class="khote row" id="khote-{{khote_id}}">
+                    <p class="khote-text">
+                        {{khoteur}}<span> khote </span>{{khote}}
+                    </p>
+                    <button class="khote-button up-number is-set-{{uped}}" onclick="action('up', {{khote_id}});">
+                        <span>{{up}}</span><i class="glyphicon glyphicon-arrow-up"></i>
+                    </button>
+                    <button class="khote-button  down-number is-set-{{downed}}" onclick="action('down', {{khote_id}});">
+                        <span>{{down}}</span><i class="glyphicon glyphicon-arrow-down"></i>
+                    </button>
+                    <button class="khote-button  fav-number is-set-{{faved}}"  onclick="action('fav', {{khote_id}});">
+                        <span>{{fav}}</span><i class="glyphicon glyphicon-heart"></i>
+                    </button>
+                    <button class="khote-button  flag-number is-set-{{flagged}}"  onclick="action('flag', {{khote_id}});">
+                        <span>{{flag}}</span><i class="glyphicon glyphicon-flag"></i>
+                    </button>
+                </li>
+            {{/.}}
+        </ul>
+    </div>
 </div>
