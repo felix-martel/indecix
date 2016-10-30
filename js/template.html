@@ -49,7 +49,7 @@
         </div>
 
         <div id="form-buttons">
-            <button type="button" id="post-new-khote" onclick="add_khote();">Send that</button>
+            <button type="button" id="post-new-khote" onclick="addKhote();">Send that</button>
         </div>
     </form>
 </div>
@@ -102,10 +102,11 @@
 
 <div id="search-tpl">
     <div class="search-bar"><input autofocus type="text" onkeydown="triggerSearch(event);" placeholder="search" name="search" id="search"/></div>
-    <button class="search-button active" onclick="search();"><i class="glyphicon glyphicon-search"></i></button>
+    <button class="search-button active" onclick="window.location.replace('index.html#all');"><i class="glyphicon glyphicon-remove"></i></button>
     
-    <div class="search-result" hidden>
-        <ul id="search-list">
+    <div class="search-result">
+        <div class="alert" id="alert-message" hidden></div>
+        <ul id="search-list" hidden>
             {{#.}}
                 <li class="khote row" id="khote-{{khote_id}}">
                     <p class="khote-text">

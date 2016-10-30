@@ -182,7 +182,15 @@ function search() {
             }
             page = Mustache.render(template, data);
             $('#container').html(page);
-            $('.search-result').show();
+            console.log(data.length);
+            if (data.length == 0){
+                console.log('displaying alert message');
+                $('#alert-message').html("no result bro :(");
+                $('#alert-message').show();
+            }
+            else {
+                $('#search-list').show();
+            }
         });
     }, 'html');
 }
@@ -190,15 +198,9 @@ function triggerSearch(event) {
     if (event.which == 13){ // On presse 'Entrée'
         search();
     }
-}/*
-$('#search').keydown(function(event){
-    console.log("Keydown !");
-    if (event.which == 13) {
-        search();
-    }
-});*/
+}
 
-function add_khote() {
+function addKhote() {
     var new_khoteur = $("input[name='khoteur']").val();
     var new_khote = $("textarea[name='khote']").val();
     console.log("New khoteur : " + new_khoteur);

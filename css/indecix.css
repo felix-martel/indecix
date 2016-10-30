@@ -82,6 +82,7 @@ h1 {
 }
 .search-button.active {
   opacity: 1;
+  top: 1.5em;
   transition: opacity 0.25s;
 }
 .search-button .glyphicon {
@@ -212,6 +213,9 @@ textarea {
 #search-list {
   list-style-type: none;
   padding: 0;
+}
+
+.search-result {
   margin-top: 5em;
 }
 
