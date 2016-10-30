@@ -278,5 +278,9 @@ textarea {
   outline: none;
 }
 
+.alert {
+  font-size: 1.3em;
+}
+
 
 
