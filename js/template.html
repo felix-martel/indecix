@@ -11,23 +11,23 @@
     <div>
         <ul id="khote-list">
             {{#.}}
-                <li class="khote row" id="khote-{{khote_id}}">
-                    <p class="khote-text">
-                        {{khoteur}}<span> khôte </span>{{khote}}
-                    </p>
-                    <button class="khote-button up-number is-set-{{uped}}" onclick="action('up', {{khote_id}});">
-                        <span>{{up}}</span><i class="glyphicon glyphicon-arrow-up"></i>
-                    </button>
-                    <button class="khote-button  down-number is-set-{{downed}}" onclick="action('down', {{khote_id}});">
-                        <span>{{down}}</span><i class="glyphicon glyphicon-arrow-down"></i>
-                    </button>
-                    <button class="khote-button  fav-number is-set-{{faved}}"  onclick="action('fav', {{khote_id}});">
-                        <span>{{fav}}</span><i class="glyphicon glyphicon-heart"></i>
-                    </button>
-                    <button class="khote-button  flag-number is-set-{{flagged}}"  onclick="action('flag', {{khote_id}});">
-                        <span>{{flag}}</span><i class="glyphicon glyphicon-flag"></i>
-                    </button>
-                </li>
+            <li class="khote row" id="khote-{{khote_id}}">
+                <p class="khote-text">
+                    {{khoteur}}<span> khôte </span>{{khote}}
+                </p>
+                <button class="khote-button up-number is-set-{{uped}}" onclick="action('up', {{khote_id}});">
+                    <span>{{up}}</span><i class="glyphicon glyphicon-arrow-up"></i>
+                </button>
+                <button class="khote-button  down-number is-set-{{downed}}" onclick="action('down', {{khote_id}});">
+                    <span>{{down}}</span><i class="glyphicon glyphicon-arrow-down"></i>
+                </button>
+                <button class="khote-button  fav-number is-set-{{faved}}"  onclick="action('fav', {{khote_id}});">
+                    <span>{{fav}}</span><i class="glyphicon glyphicon-heart"></i>
+                </button>
+                <button class="khote-button  flag-number is-set-{{flagged}}"  onclick="action('flag', {{khote_id}});">
+                    <span>{{flag}}</span><i class="glyphicon glyphicon-flag"></i>
+                </button>
+            </li>
             {{/.}}
         </ul>
     </div>
@@ -36,110 +36,117 @@
 </div>
 
 <div id="writing-page-tpl">
-<div>
-    <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.history.back();"></i>
-    <form><!--method="post" action="add.php"-->
-        <h1>Add new</h1>
-        <input type="text" id="khoteur-input" name="khoteur" placeholder="qu*lqu'un" autocomplete="off"/>
-        <p class="khote-separator">khote</p>
-        <div class="textarea-wrap">
-            <textarea id="khote" name="khote" placeholder="qqch&#10;de&#10;rigolo"></textarea>
-            <div class="hidden-p-wrap">
-                <p class="hidden-bar">write</p>
-                <p class="hidden-bar">something</p>
-                <p class="hidden-bar">fun</p>
+    <div>
+        <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.history.back();"></i>
+        <form><!--method="post" action="add.php"-->
+            <h1>Add new</h1>
+            <input type="text" id="khoteur-input" name="khoteur" placeholder="qu*lqu'un" autocomplete="off"/>
+            <p class="khote-separator">khote</p>
+            <div class="textarea-wrap">
+                <textarea id="khote" name="khote" placeholder="qqch&#10;de&#10;rigolo"></textarea>
+                <div class="hidden-p-wrap">
+                    <p class="hidden-bar">write</p>
+                    <p class="hidden-bar">something</p>
+                    <p class="hidden-bar">fun</p>
+                </div>
             </div>
-        </div>
 
-        <div id="form-buttons">
-            <button type="button" id="post-new-khote" onclick="addKhote();">Send that</button>
-        </div>
-    </form>
-</div>
+            <div id="form-buttons">
+                <button type="button" id="post-new-khote" onclick="addKhote();">Send that</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 
 <div id="login-page-tpl">
-<div>
-    <form><!--<form method="post" action="login.php">-->
-        <h1>Welcome</h1>
-        <div class="alert" id="header-message" hidden></div>
-        <input type="text" id="username" name="username" placeholder="username" autocomplete="off"/>
-        <input type="password" id="password" name="password" placeholder="*******"/>
-        <div id="form-buttons">
-            <button type="button" class="regular" id="post-new-khote" onclick="console.log('Template.html'); login();">Login</button>
-        </div>
-        <div class="alert" id="alert-message" hidden>
-        </div>
-    </form>
-    <a class="switch_form" href="#signup">not registered ?</a>
-</div>
+    <div>
+        <form><!--<form method="post" action="login.php">-->
+            <h1>Welcome</h1>
+            <div class="alert" id="header-message" hidden></div>
+            <input type="text" id="username" name="username" placeholder="username" autocomplete="off"/>
+            <input type="password" id="password" name="password" placeholder="*******"/>
+            <div id="form-buttons">
+                <button type="button" class="regular" id="post-new-khote" onclick="console.log('Template.html'); login();">Login</button>
+            </div>
+            <div class="alert" id="alert-message" hidden>
+            </div>
+        </form>
+        <a class="switch_form" href="#signup">not registered ?</a>
+    </div>
 </div>
 
 <div id="signup-page-tpl">
-<div>
-    <form><!--<form method="post" action="login.php">-->
-        <h1>Sign Up</h1>
-        <div class="alert" id="header-message" hidden></div>
-        <input type="text" id="username" name="username" placeholder="username" autocomplete="off"/>
-         <input type="text" id="email" name="email" placeholder="email@polytechnique.edu"/>
-        <input type="password" id="password" name="password" placeholder="password" />
-        <input type="password" id="confirm_password" name="confirm_password" placeholder="confirm" />
-        <div id="form-buttons">
-            <button type="button" class="regular" id="post-new-khote" onclick="signup();">Sign Up</button>
-        </div>
-        <div class="alert" id="alert-message" hidden>
-        </div>
-    </form>
-    <a class="switch_form" href="#login">already registered ?</a>
-</div>
+    <div>
+        <form><!--<form method="post" action="login.php">-->
+            <h1>Sign Up</h1>
+            <div class="alert" id="header-message" hidden></div>
+            <input type="text" id="username" name="username" placeholder="username" autocomplete="off"/>
+            <input type="text" id="email" name="email" placeholder="email@polytechnique.edu"/>
+            <input type="password" id="password" name="password" placeholder="password" />
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="confirm" />
+            <div id="form-buttons">
+                <button type="button" class="regular" id="post-new-khote" onclick="signup();">Sign Up</button>
+            </div>
+            <div class="alert" id="alert-message" hidden>
+            </div>
+        </form>
+        <a class="switch_form" href="#login">already registered ?</a>
+    </div>
 </div>
 
 <div id="settings-tpl">
-<div>
-    <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.location.replace('index.html#all');"></i>
-    <h1>Account</h1>
-    <p class="account-details"><span class="label">#</span>{{username}}</p>
-    <p class="account-details"><span class="label">@</span>{{email}}</p>
-    <p class="account-details"><span class="label">*</span>●●●●●●●●</p>
-    <div class="changing-password" hidden>
-        <input type="password" name="new-password" placeholder="new"/>
-        <input type="password" name="confirm-password" placeholder="confirm"/>
-        <button class="regular" id="save-password" onclick="savePassword();">Save changes</button>
-        <button class="regular" onclick="cancelPasswordChange();">Cancel</button>
+    <div>
+        <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.location.replace('index.html#all');"></i>
+        <h1>Account</h1>
+        <p class="account-details"><span class="label">#</span>{{username}}</p>
+        <p class="account-details"><span class="label">@</span>{{email}}</p>
+        <p class="account-details"><span class="label">*</span>●●●●●●●●</p>
+        <div class="changing-password" hidden>
+            <form><!--<form method="post" action="user_config.php">-->
+                <input type="password" name="old-password" placeholder="old"/>
+                <input type="password" name="new-password" placeholder="new"/>
+                <input type="password" name="confirm-password" placeholder="confirm"/>
+                <div id="form-buttons">
+                    <button type="button" class="regular" id="save-password" onclick="changePassword();">Save changes</button>
+                    <button type="button" class="regular" onclick="cancelPasswordChange();">Cancel</button>
+                </div>
+                <div class="alert" id="alert-message" hidden>
+                </div>
+            </form>
+        </div>
+        <div class="settings-buttons">
+            <button class="regular" id="change-password" onclick="changePassword();">Change password</button>
+            <button class="regular" onclick="window.location.replace('index.html#logout');">Log out</button>
+        </div>
     </div>
-    <div class="settings-buttons">
-        <button class="regular" id="change-password" onclick="changePassword();">Change password</button>
-        <button class="regular" onclick="window.location.replace('index.html#logout');">Log out</button>
-    </div>
-</div>
 </div>
 
 <div id="search-tpl">
     <div class="search-bar"><input autofocus type="text" onkeydown="triggerSearch(event);" placeholder="search" autocomplete="off" name="search" id="search"/></div>
     <button class="search-button active" onclick="window.location.replace('index.html#all');"><i class="glyphicon glyphicon-remove"></i></button>
-    
+
     <div class="search-result">
         <div class="alert" id="alert-message" hidden></div>
         <ul id="search-list" hidden>
             {{#.}}
-                <li class="khote row" id="khote-{{khote_id}}">
-                    <p class="khote-text">
-                        {{khoteur}}<span> khôte </span>{{khote}}
-                    </p>
-                    <button class="khote-button up-number is-set-{{uped}}" onclick="action('up', {{khote_id}});">
-                        <span>{{up}}</span><i class="glyphicon glyphicon-arrow-up"></i>
-                    </button>
-                    <button class="khote-button  down-number is-set-{{downed}}" onclick="action('down', {{khote_id}});">
-                        <span>{{down}}</span><i class="glyphicon glyphicon-arrow-down"></i>
-                    </button>
-                    <button class="khote-button  fav-number is-set-{{faved}}"  onclick="action('fav', {{khote_id}});">
-                        <span>{{fav}}</span><i class="glyphicon glyphicon-heart"></i>
-                    </button>
-                    <button class="khote-button  flag-number is-set-{{flagged}}"  onclick="action('flag', {{khote_id}});">
-                        <span>{{flag}}</span><i class="glyphicon glyphicon-flag"></i>
-                    </button>
-                </li>
+            <li class="khote row" id="khote-{{khote_id}}">
+                <p class="khote-text">
+                    {{khoteur}}<span> khôte </span>{{khote}}
+                </p>
+                <button class="khote-button up-number is-set-{{uped}}" onclick="action('up', {{khote_id}});">
+                    <span>{{up}}</span><i class="glyphicon glyphicon-arrow-up"></i>
+                </button>
+                <button class="khote-button  down-number is-set-{{downed}}" onclick="action('down', {{khote_id}});">
+                    <span>{{down}}</span><i class="glyphicon glyphicon-arrow-down"></i>
+                </button>
+                <button class="khote-button  fav-number is-set-{{faved}}"  onclick="action('fav', {{khote_id}});">
+                    <span>{{fav}}</span><i class="glyphicon glyphicon-heart"></i>
+                </button>
+                <button class="khote-button  flag-number is-set-{{flagged}}"  onclick="action('flag', {{khote_id}});">
+                    <span>{{flag}}</span><i class="glyphicon glyphicon-flag"></i>
+                </button>
+            </li>
             {{/.}}
         </ul>
     </div>
