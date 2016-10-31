@@ -56,7 +56,7 @@ $('#container').bind('swiperight', goRight);
 // GESTION DES THEMES -------
 /////////////////////////////
 
-
+// Non-implémenté en front-end
 var themes = {
     'purple': '#673AB7',
     'red' : '#820013',
@@ -72,6 +72,7 @@ var themes = {
 function changeColor(color){
     $('body').css('background-color', color);
     $('.main-menu').css('background-color', color);
+    $('.search-bar').css('background-color', color);
 }
 function setTheme(name) {
     changeColor(themes[name]);

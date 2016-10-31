@@ -146,7 +146,7 @@ h1 {
   font-size: 1.3em;
   margin-left: 25px;
 }
-#post-new-khote, button.regular {
+button.regular {
   background-color: transparent;
   color: white;
   border: 2px solid white;/*blanc*/
@@ -154,6 +154,10 @@ h1 {
   outline: none;
   padding: 0.2em 0.5em;
   font-size: 1.3em;
+}
+button.regular:active {
+  background-color: white;
+  color: #673AB7;
 }
 #form-buttons {
   margin-top: 28px;
