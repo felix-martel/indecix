@@ -51,9 +51,6 @@ $('body').keydown(function (event) {
 $('#container').bind('swipeleft', goLeft);
 $('#container').bind('swiperight', goRight);
 
-//serverURL = '';
-serverURL = 'http://s621682634.onlinehome.fr/';
-
 
 /////////////////////////////
 // GESTION DES THEMES -------
@@ -186,7 +183,6 @@ function signup() {
 }
 
 function changePassword(){
-    // Pas encore implémenté
     $(".changing-password").show();
     $(".settings-buttons").hide();
 }
@@ -195,7 +191,9 @@ function cancelPasswordChange(){
     $(".changing-password").hide();
     $(".settings-buttons").show();
 }
-
+function savePassword() {
+    // Pas encore implémenté
+}
 
 /////////////////////////////
 // RECHERCHE ----------------
@@ -250,6 +248,11 @@ function addKhote() {
             }
     );
 }
+$('#khote').keydown(function (event){
+    if (event.which == 13) {
+        addKhote();
+    }
+});
 
 function action(action, id) {
     $.post(
@@ -282,6 +285,8 @@ function action(action, id) {
 // ROUTING ------------------
 /////////////////////////////
 
+//serverURL = '';
+serverURL = 'http://s621682634.onlinehome.fr/';
 
 function route() {
     var page, hash = window.location.hash;
@@ -377,7 +382,7 @@ function route() {
                 console.log("Logging out...");
             }, 'html');
             delete sessionStorage['session_id'];
-            window.location.replace(serverURL + 'index.html#login');
+            window.location.replace('index.html#login'); // serverURL + 
             break;
 
 
