@@ -16,7 +16,7 @@ var nb_pages = 3;
 function setCurrentPage(n) {
     if (n >= 0 && n < nb_pages) {
         current_page = n;
-        console.log("New current page = {id : " + current_page + ", href : " + page_href[n] +"}");
+        console.log("New current page = {id : " + current_page + ", href : " + page_href[n] + "}");
         n = n + 1;
         var active_element = ".menu-item:nth-of-type(" + n + ")";
         console.log(active_element);
@@ -40,10 +40,9 @@ function goRight() {
 $('body').keydown(function (event) {
     var right_arrow = 39;
     var left_arrow = 37;
-    if (event.which == right_arrow) {
+    if (event.which === right_arrow) {
         goRight();
-    }
-    else if (event.which == left_arrow) {
+    } else if (event.which === left_arrow) {
         goLeft();
     }
 });
@@ -62,17 +61,17 @@ serverURL = 'http://s621682634.onlinehome.fr/';
 
 var themes = {
     'purple': '#673AB7',
-    'red' : '#820013',
-    'blue' : '#2D1D82',
-    'blue_green' : '#15825A',
-    'green' : '#208214',
-    'taupe' : '#705E44',
-    'burgundy' : '#702D34',
-    'alt_purple' : '#4C1070',
-    'yellow' : '#D6D03A',
-    'default' : '#673AB7'
+    'red': '#820013',
+    'blue': '#2D1D82',
+    'blue_green': '#15825A',
+    'green': '#208214',
+    'taupe': '#705E44',
+    'burgundy': '#702D34',
+    'alt_purple': '#4C1070',
+    'yellow': '#D6D03A',
+    'default': '#673AB7'
 };
-function changeColor(color){
+function changeColor(color) {
     $('body').css('background-color', color);
     $('.main-menu').css('background-color', color);
 }
@@ -98,17 +97,16 @@ function login() {
                         console.log('Login : session id =' + sessionStorage['session_id']);
                     }
                     if (messageJson[i].email && messageJson[i].username) {
-                        sessionStorage['username'] =  messageJson[i].username;
+                        sessionStorage['username'] = messageJson[i].username;
                         sessionStorage['email'] = messageJson[i].email;
                     }
                     if (messageJson[i].status) {
-                        if (messageJson[i].status == 'success') {
+                        if (messageJson[i].status === 'success') {
                             // -- Succès --
 
                             console.log("Logging in successful");
                             window.location.replace("index.html#all");
-                        }
-                        else {
+                        } else {
                             // -- Echec --
 
                             // Affichage d'un message d'avertissement
@@ -119,7 +117,7 @@ function login() {
                             $("input[name='username']").val("");
                             $("input[name='password']").val("");
                         }
-                    } 
+                    }
                 }
             });
     //window.location.replace("index.html#all");
@@ -136,19 +134,19 @@ function signup() {
     var password = $("input[name='password']").val();
     var confirm_password = $("input[name='confirm_password']").val();
     // -- Vérification des entrées --
-        // Les deux mots de passe coïncident
-    if (password != confirm_password){
+    // Les deux mots de passe coïncident
+    if (password !== confirm_password) {
         ALERT_MESSAGE.html("The two passwords are different");
         ALERT_MESSAGE.show(ALERT_DURATION);
         return false;
     }
-        // Le mot de passe fait au moins 5 caractères
-    if (password.length < 6){
+    // Le mot de passe fait au moins 5 caractères
+    if (password.length < 6) {
         ALERT_MESSAGE.html("Your password must be at least six characters long");
         ALERT_MESSAGE.show(ALERT_DURATION);
         return false;
     }
-        // Le nom de domaine de l'adresse mail est x.edu
+    // Le nom de domaine de l'adresse mail est x.edu
     if (!EMAIL_PATTERN.test(email)) {
         ALERT_MESSAGE.html("You must register with your polytechnique.edu email address");
         ALERT_MESSAGE.show(ALERT_DURATION);
@@ -161,15 +159,14 @@ function signup() {
                 console.log('Signup : réception JSON');
                 for (var i = 0; i < messageJson.length; i++) {
                     if (messageJson[i].status) {
-                        if (messageJson[i].status == 'success') {
+                        if (messageJson[i].status === 'success') {
                             // -- Succès --
 
                             console.log("Logging in successful");
                             window.location.replace("index.html#login");
                             $("#header-message").html("Your account have been successfully created ! We've sent you an activation link by email. Please click on it to access the app");
                             $("#header-message").show(400);
-                        }
-                        else {
+                        } else {
                             // -- Echec --
 
                             // Affichage d'un message d'avertissement
@@ -179,18 +176,64 @@ function signup() {
                             // Réinitialisation du formulaire
                             $("input[name='username']").val("");
                             $("input[name='password']").val("");
+                            $("input[name='email']").val("");
+                            $("input[name='confirm-password']").val("");
                         }
-                    } 
+                    }
                 }
             });
 }
 
-function changePassword(){
-    // Pas encore implémenté
+function changePassword() {
+    //Constantes
+    var ALERT_DURATION = 400;
+    var ALERT_MESSAGE = $("#alert-message");
+    //Entrées
+    var old_pass = $("input[name='old-password']").val();
+    var new_pass = $("input[name='new-password']").val();
+    var confirm_pass = $("input[name='confirm-password']").val();
+    //Vérification de la coïncidence des mots de passe
+    if (new_pass === confirm_pass) {
+        if (new_pass.length > 5) {
+            console.log("Changing password...");
+            $.post(serverURL + 'user_config.php', {MODAL: sessionStorage['session_id'], pass: old_pass, new_pass: new_pass},
+                    function (messageJson) {
+                        console.log('Password change : réception JSON');
+                        for (var i = 0; i < messageJson.length; i++) {
+                            if (messageJson[i].status) {
+                                if (messageJson[i].status === 'success') {
+                                    // -- Succès --
+
+                                    console.log("Password changed successfully");
+                                    ALERT_MESSAGE.html("Your password has been successfully changed !");
+                                    ALERT_MESSAGE.show(ALERT_DURATION);
+                                } else {
+                                    // -- Echec --
+
+                                    // Affichage d'un message d'avertissement
+                                    var error = messageJson[i];
+                                    ALERT_MESSAGE.html(error.detail);
+                                    ALERT_MESSAGE.show(ALERT_DURATION);
+                                    // Réinitialisation du formulaire
+                                    $("input[name='old-password']").val("");
+                                    $("input[name='new-password']").val("");
+                                    $("input[name='confirm-password']").val("");
+                                }
+                            }
+                        }
+                    });
+        } else {
+            ALERT_MESSAGE.html("The new password must be at least 6 characters long");
+            ALERT_MESSAGE.show(ALERT_DURATION);
+        }
+    } else {
+        ALERT_MESSAGE.html("The two passwords are different");
+        ALERT_MESSAGE.show(ALERT_DURATION);
+    }
     $(".changing-password").show();
     $(".settings-buttons").hide();
 }
-function cancelPasswordChange(){
+function cancelPasswordChange() {
     $(".changing-password input").val("");
     $(".changing-password").hide();
     $(".settings-buttons").show();
@@ -206,26 +249,25 @@ function search() {
     $.get('js/template.html', function (templates) {
         var template = $(templates).filter('#search-tpl').html();
         $.getJSON(serverURL + "get.php?MODAL=" + sessionStorage['session_id'] + "&filter=search&q=" + query,
-        function (data) {
-            if (data === "not_logged_in") {
-                window.location.replace("index.html#login");
-            }
-            page = Mustache.render(template, data);
-            $('#container').html(page);
-            console.log(data.length);
-            if (data.length == 0){
-                console.log('displaying alert message');
-                $('#alert-message').html("no result bro :(");
-                $('#alert-message').show();
-            }
-            else {
-                $('#search-list').show();
-            }
-        });
+                function (data) {
+                    if (data === "not_logged_in") {
+                        window.location.replace("index.html#login");
+                    }
+                    page = Mustache.render(template, data);
+                    $('#container').html(page);
+                    console.log(data.length);
+                    if (data.length === 0) {
+                        console.log('displaying alert message');
+                        $('#alert-message').html("no result bro :(");
+                        $('#alert-message').show();
+                    } else {
+                        $('#search-list').show();
+                    }
+                });
     }, 'html');
 }
 function triggerSearch(event) {
-    if (event.which == 13){ // On presse 'Entrée'
+    if (event.which === 13) { // On presse 'Entrée'
         search();
     }
 }
@@ -259,8 +301,8 @@ function action(action, id) {
                 //window.location.reload();
             }
     );
-    var parent = '#khote-'+id+' .'+action+'-number';
-    var child = '#khote-'+id+' .'+action+'-number span';
+    var parent = '#khote-' + id + ' .' + action + '-number';
+    var child = '#khote-' + id + ' .' + action + '-number span';
     console.log(action);
     var number = parseInt($(child).html());
     if ($(parent).hasClass('is-set-1')) {
@@ -268,8 +310,7 @@ function action(action, id) {
         $(child).html(number - 1);
         $(parent).removeClass('is-set-1');
         $(parent).addClass('is-set-0');
-    }
-    else {
+    } else {
         $(child).html(number + 1);
         $(parent).addClass('is-set-1');
         $(parent).removeClass('is-set-0');
@@ -367,13 +408,13 @@ function route() {
         case '#settings':
             $.get('js/template.html', function (templates) {
                 var template = $(templates).filter('#settings-tpl').html();
-                page = Mustache.render(template, {'username': sessionStorage['username'], 'email' : sessionStorage['email']});
+                page = Mustache.render(template, {'username': sessionStorage['username'], 'email': sessionStorage['email']});
                 $('#container').html(page);
             }, 'html');
             break;
 
         case '#logout':
-            $.get(serverURL + 'logout.php?MODAL=' + sessionStorage['session_id'], function(){
+            $.get(serverURL + 'logout.php?MODAL=' + sessionStorage['session_id'], function () {
                 console.log("Logging out...");
             }, 'html');
             delete sessionStorage['session_id'];
