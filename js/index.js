@@ -377,7 +377,7 @@ function route() {
                 console.log("Logging out...");
             }, 'html');
             delete sessionStorage['session_id'];
-            window.location.replace(serverURL + 'index.html#login');
+            window.location.replace('index.html#login');
             break;
 
 
