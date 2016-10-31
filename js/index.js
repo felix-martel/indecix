@@ -191,7 +191,7 @@ function signup() {
                             $("input[name='username']").val("");
                             $("input[name='password']").val("");
                             $("input[name='email']").val("");
-                            $("input[name='confirm-password']").val("");
+                            $("input[name='confirm_password']").val("");
                         }
                     }
                 }
