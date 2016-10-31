@@ -52,27 +52,27 @@ $('body').keydown(function (event) {
 // Naviguer dans les formulaires avec la touche Entrée au lieu de Tab (usage app)
 // Formulaire de login
 function loginChangeFocus(event){
-    if (event.which == 13){
+    if (event.which === 13){
         console.log("Focusing on next input");
         $('#password').focus();
     }
 }
 function loginSubmit(event){
-    if (event.which == 13){
+    if (event.which === 13){
         console.log("Submitting...");
         login();
     }
 }
 // Formulaire d'ajout de khôte
 function writingChangeFocus(event){
-    if (event.which == 13){
+    if (event.which === 13){
         event.preventDefault();
         console.log("Focusing on next input");
         $('#khote').focus();
     }
 }
 function writingSubmit(event){
-    if (event.which == 13){
+    if (event.which === 13){
         event.preventDefault();
         console.log("Submitting...");
         addKhote();
@@ -247,7 +247,7 @@ function changePassword() {
                         for (var i = 0; i < messageJson.length; i++) {
                             //console.log(messageJson[i]);
                             if (messageJson[i].status) {
-                                if (messageJson[i].status == 'success') {
+                                if (messageJson[i].status === 'success') {
                                     // -- Succès --
 
                                     console.log("Password changed successfully");
