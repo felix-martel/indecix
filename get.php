@@ -17,7 +17,7 @@ function get_khotes($filter, $user_id, $search='')
 	// Récupération de toutes les khotes
 	'all' =>    'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
 				k.up as up, IFNULL(r.uped, 0) as uped, k.down as down, IFNULL(r.downed, 0) as downed,
-				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.reported, 0) as flagged
+				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.flaged, 0) as flagged
 				FROM khote AS k
 				LEFT JOIN 
                 (SELECT * FROM relation 
@@ -28,7 +28,7 @@ function get_khotes($filter, $user_id, $search='')
 	// Récupération des meilleures khotes
 	'top' =>	'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
 				k.up as up, IFNULL(r.uped, 0) as uped, k.down as down, IFNULL(r.downed, 0) as downed,
-				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.reported, 0) as flagged
+				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.flaged, 0) as flagged
 				FROM khote AS k
 				LEFT JOIN 
                 (SELECT * FROM relation 
@@ -40,7 +40,7 @@ function get_khotes($filter, $user_id, $search='')
 	// Récupération des khotes favorites de l'utilisateur
 	'fav' =>	'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
 				k.up as up, IFNULL(r.uped, 0) as uped, k.down as down, IFNULL(r.downed, 0) as downed,
-				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.reported, 0) as flagged
+				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.flaged, 0) as flagged
 				FROM khote AS k
 				LEFT JOIN 
                 (SELECT * FROM relation 
@@ -51,7 +51,7 @@ function get_khotes($filter, $user_id, $search='')
 				LIMIT 100',
 	'search' => 'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 
 				k.up as up, IFNULL(r.uped, 0) as uped, k.down as down, IFNULL(r.downed, 0) as downed,
-				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.reported, 0) as flagged
+				k.fav as fav, IFNULL(r.faved, 0) as faved, k.flag as flag, IFNULL(r.flaged, 0) as flagged
 				FROM khote AS k
 				LEFT JOIN 
                 (SELECT * FROM relation 
