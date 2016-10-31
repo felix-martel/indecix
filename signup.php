@@ -83,44 +83,46 @@ if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) 
         setStatus(false, 'username_already_exists');
         //$msg = array('error' => 'username_already_exists');
         //array_push($msgJson, $msg);
-    }
-    // Unicité de l'adresse email
-    $query = 'SELECT user_id FROM user WHERE mail=:email';
-    $sth = $dbh->prepare($query);
-    $sth->execute(array(
-        'email' => $email,
-    ));
-    if ($sth->rowCount() > 0) {
-        setStatus(false, 'email_already_exists');
-        //$msg = array('error' => 'email_already_exists');
-        //array_push($msgJson, $msg);
-    }
-    // Insertion de l'utilisateur
-    $verif_key = md5(microtime(TRUE) * 100000);
-    $sth = $dbh->prepare("INSERT INTO user (name, mail, password, authkey) VALUES (:username, :email, SHA1(:password), :key)");
-    $sth->execute(array(
-        'username' => $username,
-        'email' => $email,
-        'password' => $password,
-        'key' => $verif_key
-    ));
-    setStatus(true, '');
-
-    // Envoi du mail de confirmation
-    $recipient = $email;
-    $title = 'Activate your KHOTE account';
-    $header = "MIME-Version: 1.0\r\n"; 
-    $header .= "From: Jacques Biot, CEO of KHOTES <activation@khote.com>\r\n";
-    $header .= "Content-Type: text/plain; charset=UTF-8\r\n";
-    $header .= "X-Mailer: PHP/".phpversion();
-    $activation_link = $serverURL . 'auth.php?user=' . urlencode($username) . '&key=' . urlencode($verif_key);
-    $login_link = $serverURL . 'index.html#login';
-
-    $message = "Hi,\r\nThanks for signing up to KHOTE !\r\n\r\nTo activate your account, click on this link : " . $activation_link . "\r\nAfter you have activated your account, you can login at " . $login_link . " or via your mobile app.\r\n\r\nBest regards,\r\nJacques Biot, CEO of KHOTE\r\n\r\n---\r\n\r\nPlease do not reply, I'm very busy right now";
-    if (mail($recipient, $title, $message, $header)) {
-        setStatus(true, '');
     } else {
-        setStatus(false, 'email_not_sent');
+        // Unicité de l'adresse email
+        $query = 'SELECT user_id FROM user WHERE mail=:email';
+        $sth = $dbh->prepare($query);
+        $sth->execute(array(
+            'email' => $email,
+        ));
+        if ($sth->rowCount() > 0) {
+            setStatus(false, 'email_already_exists');
+            //$msg = array('error' => 'email_already_exists');
+            //array_push($msgJson, $msg);
+        } else {
+            // Insertion de l'utilisateur
+            $verif_key = md5(microtime(TRUE) * 100000);
+            $sth = $dbh->prepare("INSERT INTO user (name, mail, password, authkey) VALUES (:username, :email, SHA1(:password), :key)");
+            $sth->execute(array(
+                'username' => $username,
+                'email' => $email,
+                'password' => $password,
+                'key' => $verif_key
+            ));
+            setStatus(true, '');
+
+            // Envoi du mail de confirmation
+            $recipient = $email;
+            $title = 'Activate your KHOTE account';
+            $header = "MIME-Version: 1.0\r\n";
+            $header .= "From: Jacques Biot, CEO of KHOTES <activation@khote.com>\r\n";
+            $header .= "Content-Type: text/plain; charset=UTF-8\r\n";
+            $header .= "X-Mailer: PHP/" . phpversion();
+            $activation_link = $serverURL . 'auth.php?user=' . urlencode($username) . '&key=' . urlencode($verif_key);
+            $login_link = $serverURL . 'index.html#login';
+
+            $message = "Hi,\r\nThanks for signing up to KHOTE !\r\n\r\nTo activate your account, click on this link : " . $activation_link . "\r\nAfter you have activated your account, you can login at " . $login_link . " or via your mobile app.\r\n\r\nBest regards,\r\nJacques Biot, CEO of KHOTE\r\n\r\n---\r\n\r\nPlease do not reply, I'm very busy right now";
+            if (mail($recipient, $title, $message, $header)) {
+                setStatus(true, '');
+            } else {
+                setStatus(false, 'email_not_sent');
+            }
+        }
     }
 } else {
     $msg = array('error' => 'Login or password is not set');
