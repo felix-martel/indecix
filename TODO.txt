@@ -2,15 +2,7 @@ TODO :
 
 
 >>> À déboguer :
-- Dans le menu <nav>, le lien vers la page active doit porter la classe .active qui permet de le mettre en exergue par rapport aux autres liens. Or pour l'instant, le comportement est un peu bizarre (je crois que le double-clic fonctionne pour l'activation)
+- Swipe tactile
+- Ajout d'un logo
+- Ajout du nom de l'app
 
->>> Ce qu'on peut faire seuls :
-- Gérer le système de vote et de fav (:fichier react.php)
-- Gérer la modération des khôtes (:fichier delete.php)
-- Gérer les utilisateurs (:fichiers sign_in.php, sign_up.php)
-- Gérer les paramètres utilisateurs (ajout de champs dans la table users, en particulier le choix des couleurs)
-
->>> Ce qui nécessite de contacter le BR/la Kès :
-- Se brancher sur le site existant http://khotes/
-- Se connecter via Frankiz (voir : http://wikibr.binets.fr/Authentification_Frankiz)
-- Rapatrier les anciennes khotes sur notre bdd
