@@ -382,7 +382,7 @@ function route() {
                 console.log("Logging out...");
             }, 'html');
             delete sessionStorage['session_id'];
-            window.location.replace('index.html#login'); // serverURL + 
+            window.location.replace('index.html#login');
             break;
 
 
