@@ -55,12 +55,9 @@ $('body').swipe({
     swipeLeft:goRight,
     swipeRight: goLeft 
 });
-<<<<<<< HEAD
 // Navigation tactile
 $('#container').bind('swipeleft', goLeft);
 $('#container').bind('swiperight', goRight);
-=======
->>>>>>> d00ed9990c6e4f829924d26bb126a0f982172a04
 
 //serverURL = '';
 serverURL = 'http://s621682634.onlinehome.fr/';
@@ -83,12 +80,8 @@ var themes = {
     'yellow': '#D6D03A',
     'default': '#673AB7'
 };
-<<<<<<< HEAD
-function changeColor(color) {
-=======
 
 function changeColor(color){
->>>>>>> d00ed9990c6e4f829924d26bb126a0f982172a04
     $('body').css('background-color', color);
     $('.main-menu').css('background-color', color);
     $('.search-bar').css('background-color', color);
@@ -254,23 +247,16 @@ function changePassword() {
     $(".changing-password").show();
     $(".settings-buttons").hide();
 }
-<<<<<<< HEAD
-function cancelPasswordChange() {
-=======
 
 function cancelPasswordChange(){
->>>>>>> d00ed9990c6e4f829924d26bb126a0f982172a04
     $(".changing-password input").val("");
     $(".changing-password").hide();
     $(".settings-buttons").show();
 }
 
-<<<<<<< HEAD
-=======
 function savePassword() {
     // Pas encore implémenté
 }
->>>>>>> d00ed9990c6e4f829924d26bb126a0f982172a04
 
 
 /////////////////////////////
@@ -329,7 +315,7 @@ function addKhote() {
 }
 
 $('#khote').keydown(function (event){
-    if (event.which == 13) {
+    if (event.which === 13) {
         addKhote();
     }
 });
@@ -364,9 +350,6 @@ function action(action, id) {
 // ROUTING ------------------
 /////////////////////////////
 
-
-//serverURL = '';
-serverURL = 'http://s621682634.onlinehome.fr/';
 
 function route() {
     var page, hash = window.location.hash;
