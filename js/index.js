@@ -1,4 +1,5 @@
-// Activation FastClick = réduit la latence sur mobile
+// -- Activation FastClick
+// réduit la latence sur mobile
 window.addEventListener('load', function () {
     new FastClick(document.body);
 }, false);
@@ -36,7 +37,8 @@ function goRight() {
     setCurrentPage((current_page + 1) % nb_pages);
     window.location = "index.html" + page_href[current_page];
 }
-// Navigation au clavier
+
+// -- Navigation au clavier
 $('body').keydown(function (event) {
     var right_arrow = 39;
     var left_arrow = 37;
@@ -47,7 +49,8 @@ $('body').keydown(function (event) {
         goLeft();
     }
 });
-//$('#container').on("swipeleft", goLeft);
+
+// -- Navigation tactile
 $('body').swipe({
     swipeLeft:function(event, distance, duration, fingerCount, fingerData, currentDirection){
         goRight();
@@ -56,16 +59,14 @@ $('body').swipe({
         goLeft();
     }
 });
-// Navigation tactile
-//$('#container').bind('swipeleft', goLeft);
-//$('#container').bind('swiperight', goRight);
 
 
 /////////////////////////////
 // GESTION DES THEMES -------
 /////////////////////////////
 
-// Non-implémenté en front-end
+
+// Non-implémenté dans l'interface
 var themes = {
     'purple': '#673AB7',
     'red' : '#820013',
@@ -78,18 +79,22 @@ var themes = {
     'yellow' : '#D6D03A',
     'default' : '#673AB7'
 };
+
 function changeColor(color){
     $('body').css('background-color', color);
     $('.main-menu').css('background-color', color);
     $('.search-bar').css('background-color', color);
 }
+
 function setTheme(name) {
     changeColor(themes[name]);
 }
 
+
 /////////////////////////////
 // GESTION DES UTILISATEURS--
 /////////////////////////////
+
 
 function login() {
     var username = $("input[name='username']").val();
@@ -196,18 +201,22 @@ function changePassword(){
     $(".changing-password").show();
     $(".settings-buttons").hide();
 }
+
 function cancelPasswordChange(){
     $(".changing-password input").val("");
     $(".changing-password").hide();
     $(".settings-buttons").show();
 }
+
 function savePassword() {
     // Pas encore implémenté
 }
 
+
 /////////////////////////////
 // RECHERCHE ----------------
 /////////////////////////////
+
 
 function search() {
     var query = $('#search').val();
@@ -232,6 +241,7 @@ function search() {
         });
     }, 'html');
 }
+
 function triggerSearch(event) {
     if (event.which == 13){ // On presse 'Entrée'
         search();
@@ -258,6 +268,7 @@ function addKhote() {
             }
     );
 }
+
 $('#khote').keydown(function (event){
     if (event.which == 13) {
         addKhote();
@@ -294,6 +305,7 @@ function action(action, id) {
 /////////////////////////////
 // ROUTING ------------------
 /////////////////////////////
+
 
 //serverURL = '';
 serverURL = 'http://s621682634.onlinehome.fr/';
