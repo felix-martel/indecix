@@ -1,4 +1,5 @@
 <div id="main-tpl">
+    <!-- Template utilisé par les pages d'affichage des khôtes : #all, #top, #fav -->
     <div class="top-buttons">
         <button class="search-button" onclick="window.location.replace('index.html#settings');"><i class="glyphicon glyphicon-cog"></i></button>
         <button class="search-button" onclick="window.location.replace('index.html#search');"><i class="glyphicon glyphicon-search"></i></button>
@@ -36,6 +37,7 @@
 </div>
 
 <div id="writing-page-tpl">
+<!-- Page d'ajout de khôte -->
 <div>
     <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.history.back();"></i>
     <form><!--method="post" action="add.php"-->
@@ -60,7 +62,7 @@
 
 
 <div id="login-page-tpl">
-<div>
+<!-- Page de connexion -->
     <form><!--<form method="post" action="login.php">-->
         <h1>Welcome</h1>
         <div class="alert" id="header-message" hidden></div>
@@ -74,10 +76,9 @@
     </form>
     <a class="switch_form" href="#signup">not registered ?</a>
 </div>
-</div>
 
 <div id="signup-page-tpl">
-<div>
+    <!-- Page de création de compte -->
     <form><!--<form method="post" action="login.php">-->
         <h1>Sign Up</h1>
         <div class="alert" id="header-message" hidden></div>
@@ -93,10 +94,9 @@
     </form>
     <a class="switch_form" href="#login">already registered ?</a>
 </div>
-</div>
 
 <div id="settings-tpl">
-<div>
+    <!-- Page de détails du compte et de paramètres -->
     <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.location.replace('index.html#all');"></i>
     <h1>Account</h1>
     <p class="account-details"><span class="label">#</span>{{username}}</p>
@@ -113,9 +113,9 @@
         <button class="regular" onclick="window.location.replace('index.html#logout');">Log out</button>
     </div>
 </div>
-</div>
 
 <div id="search-tpl">
+    <!-- Page de recherche -->
     <div class="search-bar"><input autofocus type="text" onkeydown="triggerSearch(event);" placeholder="search" autocomplete="off" name="search" id="search"/></div>
     <div class="top-buttons">
         <button class="search-button active" onclick="window.location.replace('index.html#all');"><i class="glyphicon glyphicon-remove"></i></button>
