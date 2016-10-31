@@ -61,10 +61,10 @@
         <form><!--<form method="post" action="login.php">-->
             <h1>Welcome</h1>
             <div class="alert" id="header-message" hidden></div>
-            <input type="text" id="username" name="username" placeholder="username" autocomplete="off"/>
-            <input type="password" id="password" name="password" placeholder="*******"/>
+            <input type="text" id="username" name="username" placeholder="username" autocomplete="off" onkeydown="loginChangeFocus(event);"/>
+            <input type="password" id="password" name="password" placeholder="*******" onkeydown="loginSubmit(event);"/>
             <div id="form-buttons">
-                <button type="button" class="regular" id="post-new-khote" onclick="console.log('Template.html'); login();">Login</button>
+                <button type="button" class="regular" id="post-new-khote" onclick="login();">Login</button>
             </div>
             <div class="alert" id="alert-message" hidden>
             </div>

@@ -49,6 +49,18 @@ $('body').keydown(function (event) {
         goLeft();
     }
 });
+function loginChangeFocus(event){
+    if (event.which == 13){
+        console.log("Focusing on next input");
+        $('#password').focus();
+    }
+}
+function loginSubmit(event){
+    if (event.which == 13){
+        console.log("Submitting...");
+        login();
+    }
+}
 
 // -- Navigation tactile
 $('body').swipe({
