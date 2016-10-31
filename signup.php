@@ -114,9 +114,8 @@ if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) 
             $header .= "Content-Type: text/plain; charset=UTF-8\r\n";
             $header .= "X-Mailer: PHP/" . phpversion();
             $activation_link = $serverURL . 'auth.php?user=' . urlencode($username) . '&key=' . urlencode($verif_key);
-            $login_link = $serverURL . 'index.html#login';
 
-            $message = "Hi,\r\nThanks for signing up to KHOTE !\r\n\r\nTo activate your account, click on this link : " . $activation_link . "\r\nAfter you have activated your account, you can login at " . $login_link . " or via your mobile app.\r\n\r\nBest regards,\r\nJacques Biot, CEO of KHOTE\r\n\r\n---\r\n\r\nPlease do not reply, I'm very busy right now";
+            $message = "Hi,\r\nThanks for signing up to KHOTE !\r\n\r\nTo activate your account, click on this link : " . $activation_link . "\r\nAfter you have activated your account, you can login via your mobile app.\r\n\r\nBest regards,\r\nJacques Biot, CEO of KHOTE\r\n\r\n---\r\n\r\nPlease do not reply, I'm very busy right now";
             if (mail($recipient, $title, $message, $header)) {
                 setStatus(true, '');
             } else {
