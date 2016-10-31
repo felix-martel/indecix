@@ -14,6 +14,7 @@ window.addEventListener('load', function () {
 var current_page = 0; // 1 : ALL, 2 : TOP, 3 : FAV
 var page_href = ['#all', '#top', '#fav'];
 var nb_pages = 3;
+
 function setCurrentPage(n) {
     if (n >= 0 && n < nb_pages) {
         current_page = n;
@@ -52,12 +53,8 @@ $('body').keydown(function (event) {
 
 // -- Navigation tactile
 $('body').swipe({
-    swipeLeft:function(event, distance, duration, fingerCount, fingerData, currentDirection){
-        goRight();
-    },
-    swipeRight:function(event, distance, duration, fingerCount, fingerData, currentDirection){
-        goLeft();
-    }
+    swipeLeft:goRight,
+    swipeRight: goLeft 
 });
 
 
