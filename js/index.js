@@ -47,9 +47,18 @@ $('body').keydown(function (event) {
         goLeft();
     }
 });
+//$('#container').on("swipeleft", goLeft);
+$('body').swipe({
+    swipeLeft:function(event, distance, duration, fingerCount, fingerData, currentDirection){
+        goRight();
+    },
+    swipeRight:function(event, distance, duration, fingerCount, fingerData, currentDirection){
+        goLeft();
+    }
+});
 // Navigation tactile
-$('#container').bind('swipeleft', goLeft);
-$('#container').bind('swiperight', goRight);
+//$('#container').bind('swipeleft', goLeft);
+//$('#container').bind('swiperight', goRight);
 
 
 /////////////////////////////
