@@ -34,8 +34,8 @@ function get_khotes($filter, $user_id, $search='')
                 (SELECT * FROM relation 
                  WHERE user_id = :user) AS r
                  ON k.khote_id = r.khote_id
-				WHERE up + down > 20 AND (down = 0 OR up/down > 2) 
-				ORDER BY up/(down+1) DESC 
+				WHERE up + down > 20 AND (down = 0 OR up/(down+0.1) > 2) 
+				ORDER BY up/(down+0.1) DESC 
 				LIMIT 100',
 	// Récupération des khotes favorites de l'utilisateur
 	'fav' =>	'SELECT k.khote_id as khote_id, k.khoteur as khoteur, k.khote as khote, 

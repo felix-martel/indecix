@@ -46,6 +46,15 @@ $('body').keydown(function (event) {
         goLeft();
     }
 });
+//$('#container').on("swipeleft", goLeft);
+$('body').swipe({
+    swipeLeft:function(event, distance, duration, fingerCount, fingerData, currentDirection){
+        goRight();
+    },
+    swipeRight:function(event, distance, duration, fingerCount, fingerData, currentDirection){
+        goLeft();
+    }
+});
 // Navigation tactile
 $('#container').bind('swipeleft', goLeft);
 $('#container').bind('swiperight', goRight);
@@ -53,12 +62,11 @@ $('#container').bind('swiperight', goRight);
 //serverURL = '';
 serverURL = 'http://s621682634.onlinehome.fr/';
 
-
 /////////////////////////////
 // GESTION DES THEMES -------
 /////////////////////////////
 
-
+// Non-implémenté en front-end
 var themes = {
     'purple': '#673AB7',
     'red': '#820013',
@@ -74,6 +82,7 @@ var themes = {
 function changeColor(color) {
     $('body').css('background-color', color);
     $('.main-menu').css('background-color', color);
+    $('.search-bar').css('background-color', color);
 }
 function setTheme(name) {
     changeColor(themes[name]);
@@ -292,6 +301,11 @@ function addKhote() {
             }
     );
 }
+$('#khote').keydown(function (event){
+    if (event.which == 13) {
+        addKhote();
+    }
+});
 
 function action(action, id) {
     $.post(
@@ -323,6 +337,8 @@ function action(action, id) {
 // ROUTING ------------------
 /////////////////////////////
 
+//serverURL = '';
+serverURL = 'http://s621682634.onlinehome.fr/';
 
 function route() {
     var page, hash = window.location.hash;
