@@ -6,6 +6,9 @@ ini_set('session.use_trans_sid', 1);
 session_name('MODAL');
 session_start();
 
+header('Cache-Control: no-cache, must-revalidate');
+header('Expires: Mon, 01 Jul 1980 05:00:00 GMT');
+header('Content-type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin:*');
 
 require_once('database.php');

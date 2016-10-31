@@ -1,5 +1,4 @@
 <div id="main-tpl">
-    <!-- Template utilisé par les pages d'affichage des khôtes : #all, #top, #fav -->
     <div class="top-buttons">
         <button class="search-button" onclick="window.location.replace('index.html#settings');"><i class="glyphicon glyphicon-cog"></i></button>
         <button class="search-button" onclick="window.location.replace('index.html#search');"><i class="glyphicon glyphicon-search"></i></button>
@@ -37,27 +36,26 @@
 </div>
 
 <div id="writing-page-tpl">
-<!-- Page d'ajout de khôte -->
-<div>
-    <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.history.back();"></i>
-    <form><!--method="post" action="add.php"-->
-        <h1>Add new</h1>
-        <input type="text" id="khoteur-input" name="khoteur" placeholder="qu*lqu'un" autocomplete="off"/>
-        <p class="khote-separator">khote</p>
-        <div class="textarea-wrap">
-            <textarea id="khote" name="khote" placeholder="qqch&#10;de&#10;rigolo"></textarea>
-            <div class="hidden-p-wrap">
-                <p class="hidden-bar">write</p>
-                <p class="hidden-bar">something</p>
-                <p class="hidden-bar">fun</p>
+    <div>
+        <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.history.back();"></i>
+        <form><!--method="post" action="add.php"-->
+            <h1>Add new</h1>
+            <input type="text" id="khoteur-input" name="khoteur" placeholder="qu*lqu'un" autocomplete="off"/>
+            <p class="khote-separator">khote</p>
+            <div class="textarea-wrap">
+                <textarea id="khote" name="khote" placeholder="qqch&#10;de&#10;rigolo"></textarea>
+                <div class="hidden-p-wrap">
+                    <p class="hidden-bar">write</p>
+                    <p class="hidden-bar">something</p>
+                    <p class="hidden-bar">fun</p>
+                    <div id="form-buttons">
+                        <button type="button" class="regular" id="post-new-khote" onclick="addKhote();">Send that</button>
+                    </div>
+                </div>
             </div>
-        <div id="form-buttons">
-            <button type="button" class="regular" id="post-new-khote" onclick="addKhote();">Send that</button>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
-</div>
-
 
 <div id="login-page-tpl">
     <div>
@@ -116,18 +114,20 @@
             </form>
         </div>
         <div class="settings-buttons">
-            <button class="regular" id="change-password" onclick="changePassword();">Change password</button>
+            <button class="regular" id="change-password" onclick="displayPasswordChange();">Change password</button>
             <button class="regular" onclick="window.location.replace('index.html#logout');">Log out</button>
         </div>
     </div>
 </div>
 
 <div id="search-tpl">
-    <!-- Page de recherche -->
     <div class="search-bar"><input autofocus type="text" onkeydown="triggerSearch(event);" placeholder="search" autocomplete="off" name="search" id="search"/></div>
+    <button class="search-button active" onclick="window.location.replace('index.html#all');"><i class="glyphicon glyphicon-remove"></i></button>
+
     <div class="top-buttons">
         <button class="search-button active" onclick="window.location.replace('index.html#all');"><i class="glyphicon glyphicon-remove"></i></button>
     </div>
+
     <div class="search-result">
         <div class="alert" id="alert-message" hidden></div>
         <ul id="search-list" hidden>

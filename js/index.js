@@ -175,8 +175,12 @@ function signup() {
 
                             console.log("Logging in successful");
                             window.location.replace("index.html#login");
-                            $("#header-message").html("Your account have been successfully created ! We've sent you an activation link by email. Please click on it to access the app");
-                            $("#header-message").show(400);
+                            console.log('just after replacement');
+                            setTimeout(function(){
+                                $("#header-message").html("Your account have been successfully created ! We've sent you an activation link by email. Please click on it to access the app");
+                                $("#header-message").show(400);
+                            }, 1000);
+                            
                         } else {
                             // -- Echec --
 
@@ -210,15 +214,18 @@ function changePassword() {
             $.post(serverURL + 'user_config.php', {MODAL: sessionStorage['session_id'], pass: old_pass, new_pass: new_pass},
                     function (messageJson) {
                         console.log('Password change : réception JSON');
+                        console.log(messageJson);
                         for (var i = 0; i < messageJson.length; i++) {
+                            //console.log(messageJson[i]);
                             if (messageJson[i].status) {
-                                if (messageJson[i].status === 'success') {
+                                if (messageJson[i].status == 'success') {
                                     // -- Succès --
 
                                     console.log("Password changed successfully");
                                     ALERT_MESSAGE.html("Your password has been successfully changed !");
                                     ALERT_MESSAGE.show(ALERT_DURATION);
-                                } else {
+                                } 
+                                else {
                                     // -- Echec --
 
                                     // Affichage d'un message d'avertissement
@@ -241,8 +248,8 @@ function changePassword() {
         ALERT_MESSAGE.html("The two passwords are different");
         ALERT_MESSAGE.show(ALERT_DURATION);
     }
-    $(".changing-password").show();
-    $(".settings-buttons").hide();
+    //$(".changing-password").show();
+    //$(".settings-buttons").hide();
 }
 
 function cancelPasswordChange(){
@@ -251,11 +258,10 @@ function cancelPasswordChange(){
     $(".settings-buttons").show();
 }
 
-function savePassword() {
-    // Pas encore implémenté
+function displayPasswordChange(){
+    $(".changing-password").show();
+    $(".settings-buttons").hide();
 }
-
-
 /////////////////////////////
 // RECHERCHE ----------------
 /////////////////////////////
@@ -312,7 +318,7 @@ function addKhote() {
 }
 
 $('#khote').keydown(function (event){
-    if (event.which == 13) {
+    if (event.which === 13) {
         addKhote();
     }
 });
@@ -347,9 +353,6 @@ function action(action, id) {
 // ROUTING ------------------
 /////////////////////////////
 
-
-//serverURL = '';
-serverURL = 'http://s621682634.onlinehome.fr/';
 
 function route() {
     var page, hash = window.location.hash;
