@@ -1,9 +1,8 @@
 // -- Activation FastClick
-// réduit la latence sur mobile
+// Réduit la latence sur mobile
 window.addEventListener('load', function () {
     new FastClick(document.body);
 }, false);
-
 
 
 /////////////////////////////
@@ -51,7 +50,7 @@ $('body').keydown(function (event) {
     }
 });
 // Naviguer dans les formulaires avec la touche Entrée au lieu de Tab (usage app)
-//    Formulaire de login
+// Formulaire de login
 function loginChangeFocus(event){
     if (event.which == 13){
         console.log("Focusing on next input");
@@ -64,7 +63,7 @@ function loginSubmit(event){
         login();
     }
 }
-//    Formulaire d'ajout de khôte
+// Formulaire d'ajout de khôte
 function writingChangeFocus(event){
     if (event.which == 13){
         event.preventDefault();
@@ -88,8 +87,6 @@ $('body').swipe({
     swipeRight: goLeft 
 });
 
-//serverURL = '';
-serverURL = 'http://s621682634.onlinehome.fr/';
 
 /////////////////////////////
 // GESTION DES THEMES -------
@@ -232,14 +229,14 @@ function signup() {
 }
 
 function changePassword() {
-    //Constantes
+    // Constantes
     var ALERT_DURATION = 400;
     var ALERT_MESSAGE = $("#alert-message");
-    //Entrées
+    // Entrées
     var old_pass = $("input[name='old-password']").val();
     var new_pass = $("input[name='new-password']").val();
     var confirm_pass = $("input[name='confirm-password']").val();
-    //Vérification de la coïncidence des mots de passe
+    // Vérification de la coïncidence des mots de passe
     if (new_pass === confirm_pass) {
         if (new_pass.length > 5) {
             console.log("Changing password...");
@@ -294,6 +291,7 @@ function displayPasswordChange(){
     $(".changing-password").show();
     $(".settings-buttons").hide();
 }
+
 
 /////////////////////////////
 // RECHERCHE ----------------
@@ -386,6 +384,8 @@ function action(action, id) {
 // ROUTING ------------------
 /////////////////////////////
 
+
+serverURL = 'http://s621682634.onlinehome.fr/';
 
 function route() {
     var page, hash = window.location.hash;
