@@ -7,7 +7,7 @@ window.addEventListener('load', function () {
 
 
 /////////////////////////////
-// NAVIGATION TACTILE -------
+// NAVIGATION ---------------
 /////////////////////////////
 
 
@@ -40,6 +40,7 @@ function goRight() {
 }
 
 // -- Navigation au clavier
+// Naviguer entre #all, #top, #fav avec les touches du clavier (usage web)
 $('body').keydown(function (event) {
     var right_arrow = 39;
     var left_arrow = 37;
@@ -49,6 +50,8 @@ $('body').keydown(function (event) {
         goLeft();
     }
 });
+// Naviguer dans les formulaires avec la touche Entrée au lieu de Tab (usage app)
+//    Formulaire de login
 function loginChangeFocus(event){
     if (event.which == 13){
         console.log("Focusing on next input");
@@ -61,8 +64,25 @@ function loginSubmit(event){
         login();
     }
 }
+//    Formulaire d'ajout de khôte
+function writingChangeFocus(event){
+    if (event.which == 13){
+        event.preventDefault();
+        console.log("Focusing on next input");
+        $('#khote').focus();
+    }
+}
+function writingSubmit(event){
+    if (event.which == 13){
+        event.preventDefault();
+        console.log("Submitting...");
+        addKhote();
+    }
+}
+
 
 // -- Navigation tactile
+// Swipe entre les pages #all, #top, #fav (usage app)
 $('body').swipe({
     swipeLeft:goRight,
     swipeRight: goLeft 
@@ -274,6 +294,7 @@ function displayPasswordChange(){
     $(".changing-password").show();
     $(".settings-buttons").hide();
 }
+
 /////////////////////////////
 // RECHERCHE ----------------
 /////////////////////////////

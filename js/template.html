@@ -39,10 +39,10 @@
         <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.history.back();"></i>
         <form>
             <h1>Add new</h1>
-            <input type="text" autofocus id="khoteur-input" name="khoteur" placeholder="qu*lqu'un" autocomplete="off"/>
+            <input type="text" autofocus id="khoteur-input" name="khoteur" placeholder="qu*lqu'un" autocomplete="off"  onkeydown="writingChangeFocus(event);"/>
             <p class="khote-separator">khote</p>
             <div class="textarea-wrap">
-                <textarea id="khote" name="khote" placeholder="qqch&#10;de&#10;rigolo"></textarea>
+                <textarea id="khote" name="khote" placeholder="qqch&#10;de&#10;rigolo" onkeydown="writingSubmit(event);"></textarea>
                 <div class="hidden-p-wrap">
                     <p class="hidden-bar">write</p>
                     <p class="hidden-bar">something</p>
