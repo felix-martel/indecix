@@ -254,10 +254,6 @@ function cancelPasswordChange(){
     $(".settings-buttons").show();
 }
 
-function savePassword() {
-    // Pas encore implémenté
-}
-
 
 /////////////////////////////
 // RECHERCHE ----------------
