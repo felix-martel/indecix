@@ -50,8 +50,6 @@ function setStatus($success, $text) {
     }
 }
 
-// tableau pour la gestion des erreurs
-$msgJson = array();
 $serverURL = "http://s621682634.onlinehome.fr/";
 
 try {
