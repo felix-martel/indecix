@@ -31,16 +31,15 @@
             {{/.}}
         </ul>
     </div>
-    <!--<button type="button" id="add-khote" onclick="window.open('#new', '_self');">+</button>-->
     <a href="#new" id="add-khote">+</a>
 </div>
 
 <div id="writing-page-tpl">
     <div>
         <i id="close-writing-page" class="glyphicon glyphicon-remove" onclick="window.history.back();"></i>
-        <form><!--method="post" action="add.php"-->
+        <form>
             <h1>Add new</h1>
-            <input type="text" id="khoteur-input" name="khoteur" placeholder="qu*lqu'un" autocomplete="off"/>
+            <input type="text" autofocus id="khoteur-input" name="khoteur" placeholder="qu*lqu'un" autocomplete="off"/>
             <p class="khote-separator">khote</p>
             <div class="textarea-wrap">
                 <textarea id="khote" name="khote" placeholder="qqch&#10;de&#10;rigolo"></textarea>
